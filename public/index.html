@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Homepage</title>
-    <link rel="stylesheet" href="index.css">
+  <link rel="stylesheet" href="index.css">
     <script src="./js/sessao.js"></script>
 </head>
 
@@ -13,7 +13,7 @@
     <header>
         <!--logo da pagina-->
         <div class="logo">
-            <img src="imagens/logo.png" alt="Logo Hobbit's House">
+            <img src="./assets/icon/logo.png" alt="Logo Hobbit's House">
             <h2>Hobbit <span>House</span></h2>
         </div>
         <!-- menu da pagina, a sua nabvar-->
@@ -32,9 +32,9 @@
     </header>
 
    <div class="sound-icon" onclick="toggleSound()">
-    <img src="imagens/som-on.png" alt="Som Ligado" id="sound-image" width="60" height="60">
+    <img src="./assets/imgs/som-on.png" alt="Som Ligado" id="sound-image" width="60" height="60">
    </div>
-    <audio id="theme-audio" src="audio/Concerning Hobbits (Howard Shore) - Music Video - Lord of the Rings.mp3"
+    <audio id="theme-audio" src="./assets/audio/Concerning Hobbits (Howard Shore) - Music Video - Lord of the Rings.mp3"
         loop></audio>
 
     <!--Secção de titulo da homepage-->
@@ -53,7 +53,7 @@
         <!--Botões da homepage-->
         <div class="botoes">
             <a href="#saibaMais" class="botao">Saiba Mais</a>
-            <a href="../Cadastro/cadastro.html" class="botao">Junte-se à "Sociedade"</a>
+            <a href="./cadastro.html" class="botao">Junte-se à "Sociedade"</a>
         </div>
 
         <div class="scroll-down">&#2193;</div>
@@ -99,7 +99,7 @@
 
         <div class="imagem-intro">
             <video width="100%" height="auto" controls>
-                <source src="video/video-hobbiton.mp4" type="video/mp4">
+                <source src="assets/video/video-hobbiton.mp4" type="video/mp4">
                 Um tour pela cidade de Hobbiton.
             </video>
         </div>
@@ -118,11 +118,11 @@
         function toggleSound() {
             if (isPlaying) {
                 audio.pause();
-                soundImage.src= "imagens/som-off.png";
+                soundImage.src= "assets/imagens/som-off.png";
                 soundImage.alt = "Som Desligado";
             } else {
                 audio.play();
-                soundImage.src="imagens/som-on.png";
+                soundImage.src="assets/imagens/som-on.png";
                 soundImage.alt = "Som Ligado";
             }
             isPlaying = !isPlaying; 
@@ -132,7 +132,7 @@
     
         window.addEventListener("load", () => {
             audio.pause();
-            soundImage.src = "imagens/som-off.png"; 
+            soundImage.src = "assets/imagens/som-off.png"; 
             soundImage.alt = "Som Desligado";
         });
     </script>

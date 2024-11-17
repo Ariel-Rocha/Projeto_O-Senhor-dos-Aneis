@@ -11,12 +11,14 @@ html {
 body {
     font-family: Arial, sans-serif;
     color: white;
-    background-image: linear-gradient(to right, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0)), url('imagens/fundo_home.png');
+    background-image:linear-gradient(to right, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0)),url('../public/assets/imagens/fundo_home.png');
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
     background-repeat: no-repeat;
 }
+
+
 
 /* Header */
 header {
@@ -49,25 +51,49 @@ header {
 
 /* Navbar */
 .menu {
-    background-color: #3B5323;
-    padding: 20px 40px;
-    border-radius: 30px;
+    width: 700px;
+    height: 120px; /* Altura ajustada para dar mais espaço */
+    background-image: url('../public/assets/imagens/navbar-bg.png'); /* Caminho correto */
+    background-size: 100% 100%; /* Garante que a imagem cubra toda a área */
+    background-repeat: no-repeat; /* Evita repetição */
+    background-position:center; /* Centraliza a imagem */
+    padding: 0; /* Espaçamento interno */
+    border-radius: 30px; /* Bordas arredondadas */
     display: flex;
-    justify-content: center;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
-    max-width: 800px;
+    justify-content: space-around; /* Espaça os itens uniformemente */
+    align-items: center; /* Centraliza verticalmente */
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3); /* Sombra leve */
     margin: 20px auto;
-    width: 70%;
+    overflow: hidden;
 }
+
 
 .menu ul {
     display: flex;
-    justify-content: center;
-    list-style-type: none;
-    gap: 15px;
+    justify-content: space-between; /* Espaçamento entre os itens */
+    align-items: center;
+    list-style: none; 
+    width: 100%;/* Remove os marcadores *//* Preenche toda a largura disponível */
     padding: 0;
     margin: 0;
 }
+
+.menu a {
+    font-family: 'Ringbearer', serif;
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+    padding: 10px 15px; /* Ajusta o tamanho dos links */
+    border-radius: 8px;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8); /* Adiciona uma sombra */
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.menu a:hover {
+    color: #DAA520;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.8); /* Destaque ao passar o mouse */
+}
+
 
 .sound-icon {
     position: fixed;
@@ -100,7 +126,7 @@ nav a {
 /* Fonte do O Senhor dos Anéis */
 @font-face {
     font-family: 'Ringbearer';
-    src: url('Fonte-Ringbearer/RINGM___.TTF') format('truetype');
+    src: url('../public/assets/Fonte-Ringbearer/RINGM___.TTF') format('truetype');
 }
 
 .menu a:hover {
@@ -110,7 +136,7 @@ nav a {
 /* Seção de Título */
 #titulo {
     font-family: 'Ringbearer', serif;
-    font-size: 70px;
+    font-size: 80px;
     line-height: 1.3;
     color: white;
     text-align: left;
@@ -135,6 +161,7 @@ nav a {
     display: flex;
     gap: 20px;
     margin-top: 20px;
+    margin-left: 70px;
     width: fit-content;
 }
 
