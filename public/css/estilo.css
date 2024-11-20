@@ -1,149 +1,94 @@
-html {
-  scroll-behavior: smooth;
+@font-face {
+  font-family: 'Ringbearer';
+  src: url('../assets/Fonte-Ringbearer/RINGM___.TTF') format('truetype');
 }
 
 
 body {
   margin: 0;
   padding: 0;
-  font-family: 'Barlow', sans-serif;
-  background-image: url('../assets/imagens/fundo_home.png');
-  background-size: cover;
-  background-position: center;
-  color: white;
+  font-family: 'Barlow', 'Segoe UI', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: black;
+}
+
+:root {
+  --tamanho-header: 80px;
+  --tamanho-banner: calc(100vh - var(--tamanho-header) - var(--tamanho-footer) - 2px);
+  --tamanho-simulador: calc(100vh - var(--tamanho-header) - var(--tamanho-footer) - 2px);
+  --tamanho-login: calc(100vh - var(--tamanho-header) - var(--tamanho-footer) - 2px);
+  --tamanho-footer: 65px;
+}
+
+.container {
+  display: flex;
+  width: 80%;
+  margin: auto;
 }
 
 .header {
+  height: var(--tamanho-header);
+  border-bottom: 2px solid #32b9cd;
+}
+
+.header .container {
+  justify-content: space-between;
+  align-items: center;
+  height: 100%;
+}
+
+.header a {
+  text-decoration: none;
+  color: #e3b062;
+}
+
+.agora {
+  font-weight: 800;
+}
+
+.navbar {
+  width: 300px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  height: 120px;
-  padding: 0 20px;
-  background-color: transparent;
+  list-style: none;
+  color: #e3b062;
 }
 
-
-.logo {
-  display: flex;
-  align-items: center;
-  gap: 10px;
+.titulo {
+  color: #32b9cd;
+  width: fit-content;
+  font-weight: 500;
 }
 
-.logo img {
-  width: 90px;
-}
-
-.logo h2 {
-  font-family: 'Ringbearer', serif;
-  font-size: 32px;
-  color: white;
-}
-
-.logo h2 span {
-  color: #DAA520;
-}
-.navbar {
-  width: 700px;
-    height: 120px; /* Altura ajustada para dar mais espaço */
-    background-image: url('../assets/imagens/navbar-bg.png'); /* Caminho correto */
-    background-size: 100% 100%; /* Garante que a imagem cubra toda a área */
-    background-repeat: no-repeat; /* Evita repetição */
-    background-position:center; /* Centraliza a imagem */
-    padding: 0; /* Espaçamento interno */
-    border-radius: 30px; /* Bordas arredondadas */
-    display: flex;
-    justify-content: space-around; /* Espaça os itens uniformemente */
-    align-items: center; /* Centraliza verticalmente */
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3); /* Sombra leve */
-    margin: 20px auto;
-    overflow: hidden;
-}
-
-
-
-.navbar ul {
-  display: flex;
-  justify-content: space-between; /* Espaçamento entre os itens */
-  align-items: center;
-  list-style: none; /* Remove os marcadores */
-  padding: 0;
+.header h1 {
   margin: 0;
-  width: 100%;
 }
 
-.navbar a {
-  font-family: 'Ringbearer', serif;
+/* BANNER */
+
+.banner {
+  height: var(--tamanho-banner);
   color: white;
-  text-decoration: none;
-  font-size: 18px;
-  padding: 10px 15px; /* Ajusta o tamanho dos links */
-  border-radius: 8px;
-  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8); /* Adiciona uma sombra */
-  transition: background-color 0.3s ease, color 0.3s ease;
+  background-image: url('../assets/imgs/bg-jelly-fish-para-home.png');
+  background-size: cover;
 }
 
-@font-face {
-  font-family: 'Ringbearer';
-  src: url('../assets/Fonte-Ringbearer/RINGM___.TTF') format('truetype');
-}
-.navbar a:hover {
-  color: #DAA520;
-  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.8); /* Destaque ao passar o mouse */
-}
-
-/* Formulário */
-.login {
-  display: flex;
-  flex-direction: column;
+.banner .container {
+  justify-content: center;
   align-items: center;
-  padding: 40px 20px;
-  background-color: rgba(0, 0, 0, 0.6);
-  border-radius: 10px;
-  margin: 20px auto;
+  height: 100%;
+}
+
+.banner .container p {
   width: 50%;
+  margin: 0;
+  padding: 0;
+  font-size: 36px;
 }
 
-.formulario {
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-  width: 100%;
+.banner .container span {
+  font-weight: 800;
 }
-
-.campo label {
-  font-weight: bold;
-}
-
-.campo input {
-  width: 100%;
-  padding: 10px;
-  border-radius: 10px;
-  border: 2px solid #32b9cd;
-}
-
-.botao {
-  width: 100%;
-  padding: 10px;
-  background-color: #ED145B;
-  color: white;
-  font-weight: bold;
-  border: none;
-  border-radius: 10px;
-  cursor: pointer;
-}
-
-.botao:hover {
-  background-color: #FF3366;
-}
-footer {
-  background-color: #3B5323;
-  color: white;
-  text-align: center;
-  padding: 20px;
-  font-size: 14px;
-  margin-top: 40px;
-}
-
 
 /* MISSÃO VISÃO VALORES */
 
@@ -178,55 +123,68 @@ footer {
 }
 
 /* FOOTER */
-footer {
-  background-color: #3B5323;
-  color: white;
-  text-align: center;
-  padding: 20px;
-  font-size: 14px;
-  margin-top: 40px;
+
+.footer {
+  background-color: #32b9cd;
+  height: 150px;
+  color: #fff;
+  display: flex;
+  font-size: 15px;
 }
+
+.footer .container {
+  justify-content: center;
+  text-align: center;
+}
+
+.footer .container .version {
+  font-size: 12px;
+}
+
 /* LOGIN */
 
 .login {
-  font-family: 'Ringbearer', serif;
-  width: 600px;
-  height: 600px;
-  background-image: url('../assets/imagens/bem-vindo_hobbit.png');
-  background-size: 100% 100%; /* Garante que a imagem cubra toda a área */
-  background-repeat: no-repeat; /* Evita repetição */
-  background-position:center; /* Centraliza a imagem */
-  padding: 0; /* Espaçamento interno */
-  border-radius: 30px; /* Bordas arredondadas */
-  display: flex;
-  justify-content: space-around; /* Espaça os itens uniformemente */
-  align-items: center; /* Centraliza verticalmente */
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3); /* Sombra leve */
-  margin: 20px auto;
-  overflow: hidden;
+  height: var(--tamanho-login);
+  background-image: url('../assets/imagens/fundo_home.png');
+  background-size: cover;
+}
+
+.login .container {
+  justify-content: center;
+  align-items: center;
+  height: 100%;
 }
 
 
-
 .card {
+  width: 500px;
+  height: 500px;
   font-family: 'Ringbearer', serif;
-  width: 50%;
-  background-color: #DAA520;
+  background-image: url('../assets/imagens/bemvindo_hobbit.png');
+  background-repeat: no-repeat;
   border-radius: 10px;
   display: flex;
   align-items: center;
   justify-content: space-evenly;
-  color: palevioletred;
+  color: #ffffff;
   flex-direction: column;
   height: fit-content;
   padding: 20px 0;
 }
+.card label {
+  background-color: yellow; /* Fundo amarelo */
+  color: black; /* Texto preto */
+  font-weight: bold; /* Texto mais visível */
+  padding: 5px; /* Espaçamento interno */
+  border-radius: 3px; /* Bordas arredondadas */
+  display: inline-block; /* Ajuste ao tamanho do texto */
+  margin-bottom: 10px; /* Espaçamento entre rótulo e campo */
+}
+
 
 .card h2 {
-  color:#fabe29;
-  text-align: center;
-  font-size: 36px;
-  font-family: 'Ringbearer', serif;
+  margin: 0;
+  font-size: 30px;
 }
 
 .formulario {
@@ -243,16 +201,14 @@ footer {
 }
 
 .formulario input {
-  font-family: 'Ringbearer', serif;
-  border: 2px solid #09a01d;
+  border: 2px solid #70cd32;
   text-align: center;
   border-radius: 10px;
   margin: 0;
 }
 
 .formulario select {
-  font-family: 'Ringbearer', serif;
-  border: 2px solid #09a01d;
+  border: 2px solid #32b9cd;
   background-color: white;
   color: gray;
   height: 36px;
@@ -262,42 +218,37 @@ footer {
 }
 
 .campo {
-  font-family: 'Ringbearer', serif;
   display: flex;
   flex-direction: column;
   justify-content: start;
   padding: 5px 0;
 }
 
+
 .botao {
-  font-family: 'Ringbearer', serif;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 15px 40px;
-  background-color: #fabe29;
-  color: #4b3900;
-  font-size: 20px;
-  font-weight: bold;
-  border: none;
-  border-radius: 10px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
   cursor: pointer;
-  transition: transform 0.2s, background-color 0.3s ease;
+  font-family: 'Ringbearer', serif;
+  border: 0;
+  border-radius: 5px;
+  font-weight: 600;
+  font-size: 18px;
+  color:  #000;
+  background-color: #FFD700;;
+  width: 120px;
+  height: 30px;
+  align-self: center;
+  margin-top: 20px;
 }
 
-.botao:hover{
-  background-color: #ffce42;
-  transform: scale(1.05);
-}
+
 .loading-div {
-  width: 50px;
+  width: 70px;
   display: none;
 }
 
 .loading-div img {
-  height: 50px;
-  width: 50px;
+  height: 70px;
+  width: 70px;
 }
 
 #div_erros_login {
@@ -306,7 +257,7 @@ footer {
 
 /* FORMULARIO */
 
-.alerta_erro{
+.alerta_erro {
   display: flex;
   justify-content: flex-end;
 }
@@ -323,7 +274,7 @@ footer {
   margin-right: 10%;
 }
 
-.card_erro #mensagem_erro{
+.card_erro #mensagem_erro {
   font-weight: 500;
   font-size: 20px;
 }
@@ -379,7 +330,7 @@ input {
 
 .simulador .container {
   flex-direction: column;
-  overflow: scroll; 
+  overflow: scroll;
   height: var(--tamanho-simulador);
 }
 
@@ -423,9 +374,23 @@ input {
 }
 
 @keyframes bell {
-  0%   {transform: rotate(25deg)}
-  25%  {transform: rotate(-25deg)}
-  50%  {transform: rotate(25deg)}
-  75%  {transform: rotate(-25deg)}
-  100% {transform: rotate(25deg)}
+  0% {
+    transform: rotate(25deg)
+  }
+
+  25% {
+    transform: rotate(-25deg)
+  }
+
+  50% {
+    transform: rotate(25deg)
+  }
+
+  75% {
+    transform: rotate(-25deg)
+  }
+
+  100% {
+    transform: rotate(25deg)
+  }
 }
