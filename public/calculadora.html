@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de Altura Hobbit</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 20px;
+        }
+        .container {
+            max-width: 400px;
+            margin: auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        input, button {
+            padding: 10px;
+            margin: 10px 0;
+            width: 100%;
+            font-size: 16px;
+        }
+        .resultado {
+            margin-top: 20px;
+            font-size: 18px;
+            font-weight: bold;
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Calculadora de Altura Hobbit</h1>
+        <p>Insira sua altura em metros (ex.: 1.75):</p>
+        <input type="number" id="altura" placeholder="Sua altura em metros" step="0.01">
+        <button onclick="calcularHobbit()">Converter para altura de Hobbit</button>
+        <div class="resultado" id="resultado"></div>
+    </div>
+
+    <script>
+        function calcularHobbit() {
+            var altura = document.getElementById('altura').value;
+            var resultado = document.getElementById('resultado');
+            
+            if (altura && altura > 0) {
+                var alturaHobbit = (altura / 1.20).toFixed(2);
+                resultado.innerHTML = "Você seria " + alturaHobbit + " hobbits de altura!";
+            } else {
+                resultado.innerHTML = "Por favor, insira uma altura válida.";
+            }
+        }
+    </script>
+</body>
+</html>

@@ -3,12 +3,323 @@
   src: url('../assets/Fonte-Ringbearer/RINGM___.TTF') format('truetype');
 }
 
+/*PAGINA INDEX*/
+html {
+  scroll-behavior: smooth;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  color: white;
+  background-image: linear-gradient(to right, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0)), url('../assets/imagens/fundo_home.png');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+}
+
+
+
+/* Header */
+header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 16px;
+}
+
+/* Logo */
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.logo img {
+  width: 90px;
+}
+
+.logo h2 {
+  font-family: 'Ringbearer', serif;
+  font-size: 32px;
+  color: white;
+}
+
+.logo h2 span {
+  color: #DAA520;
+}
+
+/* Navbar */
+.menu {
+  width: 700px;
+  height: 120px;
+  /* Altura ajustada para dar mais espaço */
+  background-image: url('../assets/imagens/navbar-bg.png');
+  /* Caminho correto */
+  background-size: 100% 100%;
+  /* Garante que a imagem cubra toda a área */
+  background-repeat: no-repeat;
+  /* Evita repetição */
+  background-position: center;
+  /* Centraliza a imagem */
+  padding: 0;
+  /* Espaçamento interno */
+  border-radius: 30px;
+  /* Bordas arredondadas */
+  display: flex;
+  justify-content: space-around;
+  /* Espaça os itens uniformemente */
+  align-items: center;
+  /* Centraliza verticalmente */
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
+  /* Sombra leve */
+  margin: 20px auto;
+  overflow: hidden;
+}
+
+
+.menu ul {
+  display: flex;
+  justify-content: space-between;
+  /* Espaçamento entre os itens */
+  align-items: center;
+  list-style: none;
+  width: 100%;
+  /* Remove os marcadores */
+  /* Preenche toda a largura disponível */
+  padding: 0;
+  margin: 0;
+}
+
+.menu a {
+  font-family: 'Ringbearer', serif;
+  color: white;
+  text-decoration: none;
+  font-size: 18px;
+  padding: 10px 15px;
+  /* Ajusta o tamanho dos links */
+  border-radius: 8px;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8);
+  /* Adiciona uma sombra */
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.menu a:hover {
+  color: #DAA520;
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.8);
+  /* Destaque ao passar o mouse */
+}
+
+
+.sound-icon {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  cursor: pointer;
+  z-index: 1000;
+  transition: transform 0.2s;
+  background-color: rgba(0, 0, 0, 0.7);
+  border-radius: 50%;
+  padding: 10px;
+}
+
+.sound-icon img {
+  width: 90px;
+  height: 90px;
+}
+
+.sound-icon:hover {
+  transform: scale(1.1);
+}
+
+nav a {
+  font-family: 'Ringbearer', serif;
+  color: white;
+  text-decoration: none;
+  font-size: 18px;
+  padding: 8px 12px;
+  border-radius: 10px;
+  transition: background-color 0.3s;
+}
+
+
+.menu a:hover {
+  color: #DAA520;
+}
+
+/* Seção de Título */
+#titulo {
+  font-family: 'Ringbearer', serif;
+  font-size: 80px;
+  line-height: 1.3;
+  color: white;
+  text-align: left;
+  margin: 40px 20px;
+}
+
+.textoDourado {
+  color: #DAA520;
+}
+
+/* Slogan */
+#slogan {
+  text-align: left;
+  font-size: 30px;
+  color: #FFFFFF;
+  margin: 20px 20px;
+  font-style: italic;
+}
+
+/* Botões */
+.botoes {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.botao {
+  font-family: 'Ringbearer', serif;
+  background-color: #DAA520;
+  color: #000;
+  padding: 30px 30px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-size: 18px;
+  text-align: center;
+  transition: background-color 0.3s, transform 0.2s;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3);
+  display: inline-flex;
+  align-items: center;
+  min-width: 180px;
+  height: auto;
+  line-height: normal;
+}
+
+.botao:hover {
+  background-color: #FFD700;
+  transform: scale(1.05);
+}
+
+/* Seção sobre */
+.sobre {
+  position: relative;
+}
+
+/* Seta de Scroll */
+.scroll-down {
+  font-size: 30px;
+  color: #DAA520;
+  text-align: center;
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  /* Correção aqui */
+  cursor: pointer;
+  animation: bounce 1.5s infinite;
+}
+
+/* Animação de Bounce */
+@keyframes bounce {
+
+  0%,
+  100% {
+    transform: translateY(0) translateX(-50%);
+  }
+
+  50% {
+    transform: translateY(10px) translateX(-50%);
+  }
+}
+
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #DAA520;
+  border-radius: 10px;
+  border: 3px solid rgba(0, 0, 0, 0.3);
+}
+
+
+/* Seção Saiba Mais */
+#saibaMais {
+  display: flex;
+  align-items: center;
+  gap: 100px;
+  padding: 50px 20px;
+  background-color: rgba(0, 0, 0, 0.6);
+  color: white;
+  margin: 40px;
+  border-radius: 15px;
+}
+
+a {
+  color: #DAA520;
+  /* Cor branca, por exemplo */
+  text-decoration: none;
+  /* Remove o sublinhado */
+}
+
+/* Altera a cor dos links quando o usuário passa o mouse */
+a:hover {
+  color: #FFFFFF;
+  /* Cor dourada ao passar o mouse */
+}
+
+.texto-intro {
+  flex: 1;
+  text-align: left;
+  max-width: 50%;
+}
+
+.imagem-intro {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  max-width: 400px;
+}
+
+.imagem-intro img {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+/* Footer */
+footer {
+  background-color: #3B5323;
+  color: white;
+  text-align: center;
+  padding: 20px;
+  font-size: 14px;
+  margin-top: 40px;
+}
 
 body {
   margin: 0;
   padding: 0;
-  font-family: 'Barlow', 'Segoe UI', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: 'Ringbearer', serif;
   background-color: black;
+  min-height: 100vh;
+  /* Garante que o body ocupe a altura da janela */
+  display: flex;
+  flex-direction: column;
 }
 
 :root {
@@ -34,6 +345,9 @@ body {
   justify-content: space-between;
   align-items: center;
   height: 100%;
+  z-index: 10;
+  position: relative;
+
 }
 
 .header a {
@@ -46,16 +360,20 @@ body {
 }
 
 .navbar {
+  font-family: 'Ringbearer', serif;
   width: 300px;
   display: flex;
   align-items: center;
   justify-content: space-between;
   list-style: none;
-  color: #e3b062;
+  color: #DAA520;
+  ;
 }
 
 .titulo {
-  color: #32b9cd;
+  font-family: 'Ringbearer', serif;
+  color: #DAA520;
+  ;
   width: fit-content;
   font-weight: 500;
 }
@@ -67,6 +385,7 @@ body {
 /* BANNER */
 
 .banner {
+
   height: var(--tamanho-banner);
   color: white;
   background-image: url('../assets/imgs/bg-jelly-fish-para-home.png');
@@ -144,6 +463,7 @@ body {
 /* LOGIN */
 
 .login {
+  font-family: 'Ringbearer', serif;
   height: var(--tamanho-login);
   background-image: url('../assets/imagens/fundo_home.png');
   background-size: cover;
@@ -171,14 +491,22 @@ body {
   height: fit-content;
   padding: 20px 0;
 }
+
 .card label {
-  background-color: yellow; /* Fundo amarelo */
-  color: black; /* Texto preto */
-  font-weight: bold; /* Texto mais visível */
-  padding: 5px; /* Espaçamento interno */
-  border-radius: 3px; /* Bordas arredondadas */
-  display: inline-block; /* Ajuste ao tamanho do texto */
-  margin-bottom: 10px; /* Espaçamento entre rótulo e campo */
+  background-color: yellow;
+  /* Fundo amarelo */
+  color: black;
+  /* Texto preto */
+  font-weight: bold;
+  /* Texto mais visível */
+  padding: 5px;
+  /* Espaçamento interno */
+  border-radius: 3px;
+  /* Bordas arredondadas */
+  display: inline-block;
+  /* Ajuste ao tamanho do texto */
+  margin-bottom: 10px;
+  /* Espaçamento entre rótulo e campo */
 }
 
 
@@ -232,8 +560,9 @@ body {
   border-radius: 5px;
   font-weight: 600;
   font-size: 18px;
-  color:  #000;
-  background-color: #FFD700;;
+  color: #000;
+  background-color: #FFD700;
+  ;
   width: 120px;
   height: 30px;
   align-self: center;
@@ -325,13 +654,96 @@ input {
 /* SIMULADOR */
 
 .simulador {
+  flex: 1;
+  /* Faz o simulador ocupar o espaço restante */
+  font-family: 'Ringbearer', serif;
   color: white;
+  background-image: url('../assets/imagens/fundo_home.png');
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  padding: 20px;
+  text-align: center;
 }
 
 .simulador .container {
+  font-family: 'Ringbearer', serif;
+  align-items: center;
+  background-color: #0c0c0c;
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+  display: flex;
   flex-direction: column;
-  overflow: scroll;
+  overflow: hidden;
+  /* Impede o conteúdo de ultrapassar os limites */
   height: var(--tamanho-simulador);
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+  position: relative;
+  /* Mantém o simulador no fluxo correto */
+}
+
+/* Inputs e Botão - Simulador */
+.simulador input {
+  font-family: 'Ringbearer', serif;
+  width: 230px;
+  /* Ajuste de largura */
+  padding: 8px;
+  /* Reduz o espaçamento interno */
+  font-size: 14px;
+  /* Tamanho de fonte menor */
+  border: 2px solid #DAA520;
+  /* Cor do contorno */
+  border-radius: 5px;
+  /* Bordas arredondadas */
+  margin: 10px auto;
+  /* Margem para separação */
+  display: block;
+  /* Centraliza dentro do simulador */
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+  /* Sombra leve */
+}
+
+button {
+  font-family: 'Ringbearer', serif;
+  padding: 8px;
+  /* Ajusta o preenchimento interno */
+  margin: 15px;
+  /* Espaçamento entre os botões */
+  border-radius: 5px;
+  /* Bordas arredondadas */
+  border: none;
+  /* Remove as bordas */
+  font-size: 14px;
+  /* Tamanho do texto */
+  background-color: #FFD700;
+  /* Cor do botão */
+  color: black;
+  /* Cor do texto */
+  cursor: pointer;
+  /* Ícone de clique */
+  width: 180px;
+  /* Ajusta automaticamente ao texto */
+}
+
+button:hover {
+  background-color: #FFC107;
+  /* Cor ao passar o mouse */
+}
+
+.footer {
+  height: var(--tamanho-footer);
+  background-color: #32b9cd;
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  z-index: 10;
+  position: relative;
+  clear: both;
 }
 
 /* ALERTA */

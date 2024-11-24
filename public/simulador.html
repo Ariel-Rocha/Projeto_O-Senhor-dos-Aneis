@@ -6,77 +6,157 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>AquaTech | Simulador</title>
-
+    <title>Hobbit House | Simulador</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="./js/sessao.js"></script>
 
     <link rel="stylesheet" href="./css/estilo.css">
     <link rel="icon" href="./assets/icon/favicon2.ico">
     <link rel="preconnect" href="https://fonts.gstatic.com">
+    <style>
+        canvas {
+            margin-top: 20px;
+            max-width: 100%;
+        }
+
+        #vencedores {
+            margin-top: 20px;
+            font-size: 18px;
+            color: #FFD700;
+        }
+
+        #div_mensagem {
+            margin-top: 20px;
+            font-size: 16px;
+            color: #32a852;
+        }
+    </style>
 </head>
 
 <body>
-
-    <!--header inicio-->
+    <!-- Header -->
     <div class="header">
         <div class="container">
             <h1 class="titulo">Hobbit House</h1>
             <ul class="navbar">
-                <li>
-                    <a href="./index.html">Home</a>
-                </li>
+                <li><a href="./index.html">Home</a></li>
                 <li class="agora">Simulador</li>
                 <li>|</li>
-                <li>
-                    <a href="./login.html">Login</a>
-                </li>
-                <li>
-                    <a href="./login.html">Cadastro</a>
-                </li>
+                <li><a href="./login.html">Login</a></li>
+                <li><a href="./login.html">Cadastro</a></li>
             </ul>
         </div>
     </div>
 
-
-    <!-- simulador inicio -->
-    <div class="simulador">
+    <!-- Simulador -->
+    <main class="simulador">
         <div class="container">
-            <h2>Simulador</h2>
-            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Accusantium tempora architecto sint fugit
-                dolorum? Ipsum laborum magnam similique labore, voluptate amet reprehenderit rem ab blanditiis quisquam
-                laboriosam eaque alias. Reiciendis. Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                Accusantium tempora architecto sint fugit dolorum? Ipsum laborum magnam similique labore, voluptate amet
-                reprehenderit rem ab blanditiis quisquam laboriosam eaque alias. Reiciendis.</p>
-            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Accusantium tempora architecto sint fugit
-                dolorum? Ipsum laborum magnam similique labore, voluptate amet reprehenderit rem ab blanditiis quisquam
-                laboriosam eaque alias. Reiciendis. Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                Accusantium tempora architecto sint fugit dolorum? Ipsum laborum magnam similique labore, voluptate amet
-                reprehenderit rem ab blanditiis quisquam laboriosam eaque alias. Reiciendis.</p>
-            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Accusantium tempora architecto sint fugit
-                dolorum? Ipsum laborum magnam similique labore, voluptate amet reprehenderit rem ab blanditiis quisquam
-                laboriosam eaque alias. Reiciendis. Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                Accusantium tempora architecto sint fugit dolorum? Ipsum laborum magnam similique labore, voluptate amet
-                reprehenderit rem ab blanditiis quisquam laboriosam eaque alias. Reiciendis.</p>
-            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Accusantium tempora architecto sint fugit
-                dolorum? Ipsum laborum magnam similique labore, voluptate amet reprehenderit rem ab blanditiis quisquam
-                laboriosam eaque alias. Reiciendis. Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                Accusantium tempora architecto sint fugit dolorum? Ipsum laborum magnam similique labore, voluptate amet
-                reprehenderit rem ab blanditiis quisquam laboriosam eaque alias. Reiciendis.</p>
+            <h1>Calculadora de Altura Hobbit</h1>
+            <p>Insira várias alturas (em metros) para converter para a escala Hobbit:</p>
+
+            <!-- Entrada de altura -->
+            <input type="number" id="ipt_altura" placeholder="Digite uma altura em metros" step="0.01">
+            <button onclick="adicionarAltura()">Adicionar Altura</button>
+            <button onclick="calcularAlturas()">Calcular Alturas</button>
+
+
+            <!-- Div para mensagens -->
+            <div id="div_mensagem"></div>
+            <!-- Lista de alturas -->
+            <h2>Alturas Adicionadas</h2>
+            <ul id="listaAlturas"></ul>
+
+            <!-- Resultados -->
+            <h2>Resultados</h2>
+            <ul id="resultado"></ul>
+
+            <h2>O Mais Alto e o Mais Baixo: </h2>
+            <div id="vencedores"></div>
 
         </div>
-    </div>
-    <!-- simulador fim -->
+    </main>
 
-    <!--footer inicio-->
-    <div class="footer">
+    <!-- Footer -->
+    <footer class="footer">
         <div class="container">
-            <h4>Feito com amor por aluno &hearts; SPTech &copy; 2023</h4>
+            <h4>Ariel Natan | &hearts; SPTech &copy; 2024</h4>
             <span class="version">v1.0.0</span>
         </div>
-    </div>
-    <!--footer fim-->
+    </footer>
 
+    <body>
 
-</body>
+        <script>
+            // Referências globais aos elementos HTML
+            var campoAltura = document.getElementById('ipt_altura');
+            var divMensagem = document.getElementById('div_mensagem');
+            var listaAlturas = document.getElementById('listaAlturas');
+            var listaResultados = document.getElementById('resultado');
+            var mensagemVencedores = document.getElementById('vencedores');
+
+            // Vetores para armazenar dados
+            var alturas = [];
+            var alturasHobbits = [];
+
+            // Função para adicionar uma altura ao vetor
+            function adicionarAltura() {
+                var alturaUsuario = Number(campoAltura.value);
+                if (alturaUsuario && alturaUsuario > 0) {
+                    alturas.push(alturaUsuario); // Adiciona a altura ao vetor
+                    divMensagem.innerHTML = "Altura adicionada com sucesso!";
+                    listaAlturas.innerHTML += `<li>Altura ${alturas.length}: ${alturaUsuario} metros</li>`;
+                    campoAltura.value = ""; // Limpa o campo
+                } else {
+                    divMensagem.innerHTML = "Por favor, insira uma altura válida.";
+                }
+            }
+
+            // Função para calcular as alturas na escala Hobbit
+            function calcularAlturas() {
+                listaResultados.innerHTML = ""; // Limpa os resultados anteriores
+                alturasHobbits = []; // Limpa os dados convertidos antes de recalcular
+
+                for (var i = 0; i < alturas.length; i++) {
+                    var alturaHobbit = (alturas[i] / 1.20).toFixed(2); // Converte para Hobbit
+                    alturasHobbits.push(Number(alturaHobbit)); // Adiciona ao vetor convertido
+                    listaResultados.innerHTML += `<li>Altura ${i + 1}: ${alturas[i]} metros = ${alturaHobbit} Hobbits</li>`;
+                }
+
+                divMensagem.innerHTML = "Cálculo concluído com sucesso!";
+                exibirVencedores();
+            }
+
+            // Função para exibir o Hobbit mais alto e o usuário mais baixo
+            function exibirVencedores() {
+                if (alturas.length === 0) {
+                    mensagemVencedores.innerHTML = "Nenhum dado disponível para calcular os vencedores.";
+                    return;
+                }
+
+                var maiorAlturaHobbit = alturasHobbits[0];
+                var menorAlturaUsuario = alturas[0];
+                var indiceMaiorHobbit = 0;
+                var indiceMenorUsuario = 0;
+
+                for (var i = 1; i < alturas.length; i++) {
+                    if (alturasHobbits[i] > maiorAlturaHobbit) {
+                        maiorAlturaHobbit = alturasHobbits[i];
+                        indiceMaiorHobbit = i;
+                    }
+
+                    if (alturas[i] < menorAlturaUsuario) {
+                        menorAlturaUsuario = alturas[i];
+                        indiceMenorUsuario = i;
+                    }
+                }
+
+                mensagemVencedores.innerHTML = `
+                    <strong>Resultados:</strong><br>
+                    Hobbit mais alto: Altura ${indiceMaiorHobbit + 1} = ${maiorAlturaHobbit} Hobbits<br>
+                    Usuário mais baixo: Altura ${indiceMenorUsuario + 1} = ${menorAlturaUsuario} metros
+                `;
+            }
+        </script>
+    </body>
 
 </html>
