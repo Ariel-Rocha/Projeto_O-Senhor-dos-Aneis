@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AquaTech | Tempo Real</title>
+    <title>Hobbit | Tempo Real</title>
 
 
     <link rel="stylesheet" href="./../css/dashboards.css">
@@ -26,14 +26,14 @@
 
         <div class="header-left dash-header">
 
-            <h1>AquaTech</h1>
+            <h1>Hobbit House</h1>
 
             <div class="hello">
                 <h3>Olá, <span id="b_usuario">usuário</span>!</h3>
             </div>
 
             <div class="btn-nav">
-                <h3>Aquários</h3>
+                <h3>Indicadores</h3>
             </div>
 
             <div class="btn-nav-white">
@@ -55,44 +55,62 @@
         </div>
 
         <div class="dash">
-            <div id="alerta">
-            </div>
+            <div id="alerta"></div>
+        
             <div class="area-parametros-alerta">
-                <p class="titulo-legenda">
-                    Legenda - Parâmetros para Alertas
-                </p>
-                <div class="parametros-alerta">
-                    <div class="item-regua perigo-frio">
-                        <p>Perigo</p>
-                        <p>&lt;=5°C</p>
-                    </div>
-                    <div class="item-regua alerta-frio">
-                        <p>Alerta</p>
-                        <p>&lt;=10°C</p>
-                    </div>
-                    <div class="item-regua ideal">
-                        <p>Ideal</p>
-                        <p>20°C</p>
-                    </div>
-                    <div class="item-regua alerta-quente">
-                        <p>Alerta</p>
-                        <p>&gt;=22°C</p>
-                    </div>
-                    <div class="item-regua perigo-quente">
-                        <p>Perigo</p>
-                        <p>&gt;=23°C</p>
-                    </div>
-                </div>
+                <p class="titulo-legenda">Indicadores - Alturas dos Usuários</p>
             </div>
-
-            <div class="cards" id="cardAquarios">
-
+        
+            <!-- Div para os indicadores -->
+            <div id="cardIndicadores" class="cards">
+                <!-- Os KPIs serão inseridos dinamicamente aqui -->
             </div>
-
         </div>
-
-    </div>
-
+        
+        <script>
+            // Simulação de dados para os KPIs
+            const dadosAlturas = {
+                maisBaixa: 100, // Altura mais baixa em cm
+                media: 125, // Altura média em cm
+                maisAlta: 150 // Altura mais alta em cm
+            };
+        
+            // Função para exibir os KPIs
+            function exibirKPIs() {
+                const cardContainer = document.getElementById("cardIndicadores");
+        
+                // KPI: Altura Mais Baixa
+                cardContainer.innerHTML += `
+                    <div class="card">
+                        <h2>Hobbit Mais Baixo</h2>
+                        <p>${dadosAlturas.maisBaixa} cm</p>
+                    </div>
+                `;
+        
+                // KPI: Altura Média
+                cardContainer.innerHTML += `
+                    <div class="card">
+                        <h2>Altura Média</h2>
+                        <p>${dadosAlturas.media} cm</p>
+                    </div>
+                `;
+        
+                // KPI: Altura Mais Alta
+                cardContainer.innerHTML += `
+                    <div class="card">
+                        <h2>Hobbit Mais Alto</h2>
+                        <p>${dadosAlturas.maisAlta} cm</p>
+                    </div>
+                `;
+            }
+        
+            // Chamando a função para exibir os KPIs
+            exibirKPIs();
+        </script>
+        
+        <style>
+   
+        </style>
 </body>
 
 <script>
