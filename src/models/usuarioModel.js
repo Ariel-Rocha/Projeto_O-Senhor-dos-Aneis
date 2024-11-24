@@ -32,9 +32,20 @@ function cadastrarAlturas(fkusuario, altura, alturaHobbits) {
     return database.executar(instrucaoSql);
 }
  function listarAlturas(){
-    var instrucaoSql = `SELECT * FROM usuario join alturas_usuarios ON usuario.id = fk_usuario ORDER BY altura_hobbits;`
+    var instrucaoSql = `SELECT 
+    MAX(altura_hobbits) AS maior, 
+    MIN(altura_hobbits) AS menor, 
+    AVG(altura_hobbits) AS media
+FROM 
+    usuario 
+JOIN 
+    alturas_usuarios 
+ON 
+    usuario.id = fk_usuario;`
+
     return database.executar(instrucaoSql);
  }
+
 module.exports = {
     autenticar,
     cadastrar,

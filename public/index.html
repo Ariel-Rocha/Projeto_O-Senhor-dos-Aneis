@@ -33,7 +33,7 @@
         </div>
     </header>
 
-   <div class="sound-icon" onclick="toggleSound()">
+   <div class="imagemSom" onclick="alternarSom()">
     <img src="../public/assets/imagens/som-on.png" alt="Som Ligado" id="sound-image" width="60" height="60">
    </div>
     <audio id="theme-audio" src="./assets/audio/Concerning Hobbits (Howard Shore) - Music Video - Lord of the Rings.mp3"
@@ -67,7 +67,7 @@
 
     <section id="saibaMais">
         <div class="texto-intro">
-            <h2>Bem-vindo ao Condado - A cidade de "Hobbiton" - Auckland, Nova Zelândia</h2><br><br>
+            <h2 style ="color: #DAA520 ">Bem-vindo ao Condado - A cidade de "Hobbiton" - Auckland, Nova Zelândia</h2><br><br>
             <p>Imagine um lugar onde o tempo desacelera,<br> onde colinas verdes se estendem até o horizonte,<br>
                 pontuadas por portas redondas coloridas e jardins floridos.<br> Esse lugar encantador não é apenas uma
                 fantasia – ele existe e espera por você em Hobbiton,<br> uma vila Hobbit localizada na pitoresca ilha
@@ -109,35 +109,36 @@
 
 
     <footer>
-        <p> &copy; 2024 Hobbit House. Todos os direitos reservados.</p>
+        <h4>Hobbit House. Todos os direitos reservados. &hearts; Ariel Rocha | SPTech &copy; 2024</h4>
     </footer>
 
     <script>
-        const audio = document.getElementById("theme-audio");
-        const soundImage = document.getElementById("sound-image");
-        let isPlaying = false;
-    
-        function toggleSound() {
-            if (isPlaying) {
-                audio.pause();
-                soundImage.src= "assets/imagens/som-off.png";
-                soundImage.alt = "Som Desligado";
-            } else {
-                audio.play();
-                soundImage.src="assets/imagens/som-on.png";
-                soundImage.alt = "Som Ligado";
-            }
-            isPlaying = !isPlaying; 
-            console.log("Imagem atual: ", soundImage.src); 
-    }
-        
-    
-        window.addEventListener("load", () => {
+     
+    var audio = document.getElementById("theme-audio");
+    var imagemSom = document.getElementById("sound-image");
+    var estaTocando = false;
+
+    function alternarSom() {
+        if (estaTocando) {
             audio.pause();
-            soundImage.src = "assets/imagens/som-off.png"; 
-            soundImage.alt = "Som Desligado";
-        });
+            imagemSom.src = "assets/imagens/som-off.png";
+            imagemSom.alt = "Som Desligado";
+        } else {
+            audio.play();
+            imagemSom.src = "assets/imagens/som-on.png";
+            imagemSom.alt = "Som Ligado";
+        }
+        estaTocando = !estaTocando; 
+        console.log("Imagem atual: ", imagemSom.src); 
+    }
+
+    window.addEventListener("load", function() {
+        audio.pause();
+        imagemSom.src = "assets/imagens/som-off.png"; 
+        imagemSom.alt = "Som Desligado";
+    });
     </script>
+
 </body>
 
 </html>

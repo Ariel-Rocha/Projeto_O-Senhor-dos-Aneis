@@ -2,13 +2,12 @@
 <html lang="pt-br">
 
 <head>
-    <link rel="shortcut icon" href="../assets/icon/favicon2.ico" type="image/x-icon">
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hobbit | Tempo Real</title>
 
-
+    <link rel="icon" href="./assets/icon/logo.png"/>
     <link rel="stylesheet" href="./../css/dashboards.css">
     <link rel="stylesheet" href="./../css/estilo.css" />
 
@@ -85,7 +84,7 @@
                 cardContainer.innerHTML += `
                     <div class="card">
                         <h2>Hobbit Mais Baixo</h2>
-                        <p id= "test">${dadosAlturas.maisBaixa} cm</p>
+                        <p id= "MaisBaixa">${dadosAlturas.maisBaixa} cm</p>
                     </div>
                 `;
 
@@ -93,7 +92,7 @@
                 cardContainer.innerHTML += `
                     <div class="card">
                         <h2>Altura Média</h2>
-                        <p>${dadosAlturas.media} cm</p>
+                        <p id= "media">${dadosAlturas.media} cm</p>
                     </div>
                 `;
 
@@ -101,7 +100,7 @@
                 cardContainer.innerHTML += `
                     <div class="card">
                         <h2>Hobbit Mais Alto</h2>
-                        <p>${dadosAlturas.maisAlta} cm</p>
+                        <p id= "MaisAlto">${dadosAlturas.maisAlta} cm</p>
                     </div>
                 `;
             }
@@ -124,7 +123,9 @@ function exibirIndicadores() {
       res.json().then((json) => {
         console.log(json[0])
         console.log(json + "respostasAlturas")
-        test.innerHTML = json[0].altura
+        MaisBaixa.innerHTML = json[0].menor
+        media.innerHTML = json[0].media
+        MaisAlto.innerHTML= json[0].maior
       })
     }))
   }

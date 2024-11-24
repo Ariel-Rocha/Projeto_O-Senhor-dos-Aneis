@@ -117,7 +117,7 @@ header {
 }
 
 
-.sound-icon {
+.imagemSom {
   position: fixed;
   top: 20px;
   right: 20px;
@@ -129,12 +129,12 @@ header {
   padding: 10px;
 }
 
-.sound-icon img {
+.imagemSom img {
   width: 90px;
   height: 90px;
 }
 
-.sound-icon:hover {
+.imagemSom:hover {
   transform: scale(1.1);
 }
 
@@ -156,6 +156,7 @@ nav a {
 /* Seção de Título */
 #titulo {
   font-family: 'Ringbearer', serif;
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.8);
   font-size: 80px;
   line-height: 1.3;
   color: white;
@@ -172,6 +173,7 @@ nav a {
   text-align: left;
   font-size: 30px;
   color: #FFFFFF;
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.8);
   margin: 20px 20px;
   font-style: italic;
 }
@@ -284,6 +286,7 @@ a:hover {
   flex: 1;
   text-align: left;
   max-width: 50%;
+  line-height: 1.8;
 }
 
 .imagem-intro {
@@ -338,7 +341,11 @@ body {
 
 .header {
   height: var(--tamanho-header);
-  border-bottom: 2px solid #32b9cd;
+  border-bottom: 2px solid #DAA520;
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.8);
+  background-image: url('../assets/imagens/navbar-global.png');
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 .header .container {
@@ -352,7 +359,18 @@ body {
 
 .header a {
   text-decoration: none;
-  color: #e3b062;
+  color: white;
+  text-decoration: none;
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.8);
+  font-size: 18px;
+  padding: 8px 12px;
+  border-radius: 10px;
+  transition: background-color 0.3s;
+}
+
+.header a:hover{
+  color: #DAA520;
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.8);
 }
 
 .agora {
@@ -444,7 +462,7 @@ body {
 /* FOOTER */
 
 .footer {
-  background-color: #32b9cd;
+  background-color: #3B5323;
   height: 150px;
   color: #fff;
   display: flex;
@@ -735,7 +753,7 @@ button:hover {
 
 .footer {
   height: var(--tamanho-footer);
-  background-color: #32b9cd;
+  background-color:#3B5323;
   color: #fff;
   display: flex;
   justify-content: center;
