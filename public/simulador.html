@@ -58,6 +58,7 @@
             <input type="number" id="ipt_altura" placeholder="Digite uma altura em metros" step="0.01">
             <button onclick="adicionarAltura()">Adicionar Altura</button>
             <button onclick="calcularAlturas()">Calcular Alturas</button>
+            <button onclick="adicionar()">Cadastrar Alturas</button>
 
 
             <!-- Div para mensagens -->
@@ -124,6 +125,26 @@
 
                 divMensagem.innerHTML = "Cálculo concluído com sucesso!";
                 exibirVencedores();
+            }
+
+            function adicionar() {
+                fetch("/usuarios/cadastrarAlturas", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify({
+                        fkusuario: Number(sessionStorage.ID_USUARIO),
+                        altura_usuario: alturas[0],
+                        altura_hobbit: alturasHobbits[0],
+
+                    }),
+                }).then(function (resposta) {
+                    console.log("resposta Pergunta: ", resposta);
+                    if (resposta.ok) {
+
+                    }
+                });
             }
 
             // Função para exibir o Hobbit mais alto e o usuário mais baixo

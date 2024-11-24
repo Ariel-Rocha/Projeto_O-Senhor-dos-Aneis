@@ -18,10 +18,17 @@ CREATE TABLE aviso (
 
 CREATE TABLE alturas_usuarios (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    nome_usuario VARCHAR(100) NOT NULL,
-    altura DECIMAL(5, 2) NOT NULL
+	fk_usuario INT,
+	FOREIGN KEY (fk_usuario) REFERENCES usuario(id),
+    altura DECIMAL(5, 2) NOT NULL,
+    altura_hobbits DECIMAL (5,2) NOT NULL
 );
 
-SELECT * FROM usuario;
+desc alturas_usuarios;
+
+
+SELECT * FROM alturas_usuarios;
+
+SELECT * FROM usuario join alturas_usuarios ON usuario.id = fk_usuario;
 
 

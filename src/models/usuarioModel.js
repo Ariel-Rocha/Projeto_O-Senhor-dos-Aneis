@@ -21,8 +21,23 @@ function cadastrar(nome, email, senha) {
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
 }
-
+function cadastrarAlturas(fkusuario, altura, alturaHobbits) {
+  
+    
+   
+    var instrucaoSql = `
+        INSERT INTO alturas_usuarios (fk_usuario, altura, altura_hobbits) VALUES (${fkusuario}, ${altura}, ${alturaHobbits});
+    `;
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
+ function listarAlturas(){
+    var instrucaoSql = `SELECT * FROM usuario join alturas_usuarios ON usuario.id = fk_usuario ORDER BY altura_hobbits;`
+    return database.executar(instrucaoSql);
+ }
 module.exports = {
     autenticar,
-    cadastrar
-};
+    cadastrar,
+    cadastrarAlturas,
+    listarAlturas
+}; 

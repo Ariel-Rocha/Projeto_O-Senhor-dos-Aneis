@@ -89,8 +89,29 @@ function cadastrar(req, res) {
             );
     }
 }
-
+function cadastrarAlturas(req, res) {
+var fkusuario = req.body.fkusuario
+var altura_usuario = req.body.altura_usuario
+var altura_hobbits = req.body.altura_hobbit
+usuarioModel.cadastrarAlturas(fkusuario,altura_usuario, altura_hobbits).then(function (resultado){
+    res.json(resultado)
+}).catch(function (erro){
+    console.log(erro);
+      console.log(
+        "\nHouve um erro ao realizar o cadastro! Erro: ",
+        erro.sqlMessage
+      );
+    res.status(500).json(erro.sqlMessage)
+})
+}
+function listarAlturas(req,res){
+    usuarioModel.listarAlturas(req,res).then((resultado =>{
+        res.status(200).json(resultado)
+    }))
+}
 module.exports = {
     autenticar,
-    cadastrar
+    cadastrar,
+    cadastrarAlturas,
+    listarAlturas
 }
