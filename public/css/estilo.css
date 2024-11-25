@@ -3,11 +3,6 @@
   src: url('../assets/Fonte-Ringbearer/RINGM___.TTF') format('truetype');
 }
 
-/*PAGINA INDEX*/
-html {
-  scroll-behavior: smooth;
-}
-
 * {
   margin: 0;
   padding: 0;
@@ -212,48 +207,8 @@ nav a {
 /* Seção sobre */
 .sobre {
   position: relative;
-}
-
-/* Seta de Scroll */
-.scroll-down {
-  font-size: 30px;
-  color: #DAA520;
-  text-align: center;
-  position: absolute;
-  bottom: 20px;
-  left: 50%;
-  transform: translateX(-50%);
-  /* Correção aqui */
-  cursor: pointer;
-  animation: bounce 1.5s infinite;
-}
-
-/* Animação de Bounce */
-@keyframes bounce {
-
-  0%,
-  100% {
-    transform: translateY(0) translateX(-50%);
-  }
-
-  50% {
-    transform: translateY(10px) translateX(-50%);
-  }
-}
-
-::-webkit-scrollbar {
-  width: 12px;
-}
-
-::-webkit-scrollbar-track {
-  background: rgba(0, 0, 0, 0.3);
-  border-radius: 10px;
-}
-
-::-webkit-scrollbar-thumb {
-  background-color: #DAA520;
-  border-radius: 10px;
-  border: 3px solid rgba(0, 0, 0, 0.3);
+  margin: 0; 
+  padding: 0;
 }
 
 
@@ -261,11 +216,11 @@ nav a {
 #saibaMais {
   display: flex;
   align-items: center;
-  gap: 100px;
+  gap: 50px;
   padding: 50px 20px;
   background-color: rgba(0, 0, 0, 0.6);
   color: white;
-  margin: 40px;
+  margin: 20px;
   border-radius: 15px;
 }
 
@@ -281,6 +236,52 @@ a:hover {
   color: #FFFFFF;
   /* Cor dourada ao passar o mouse */
 }
+
+/*Galeria dos personagens */
+.galeria-personagens {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+  padding: 20px;
+  background-color: #2f4538;
+  border-radius: 10px;
+  margin-top: 20px;
+}
+
+.personagens h1 {
+  color: #DAA520;
+}
+
+.personagem {
+  text-align: center;
+  width: 200px;
+  background-color: #fff;
+  border: 1px solid #DAA520;
+  border-radius: 10px;
+  padding: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.personagem img {
+  width: 150px;
+  height: auto;
+  border-radius: 8%;
+     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Sombra para destacar */
+}
+
+.personagem h3 {
+  font-size: 18px;
+  color: #DAA520;
+  margin: 10px 0;
+}
+
+.personagem p {
+  font-size: 14px;
+  color: #333;
+}
+
+
 
 .texto-intro {
   flex: 1;
@@ -826,4 +827,73 @@ button:hover {
   100% {
     transform: rotate(25deg)
   }
+}
+
+/*SOBRE MIM */
+/* Estilização da imagem no Sobre Mim */
+.header-sobre-mim {
+  display: flex;
+  justify-content: center; /* Centraliza horizontalmente */
+  align-items: center; /* Centraliza verticalmente */
+  padding: 20px 0; /* Espaçamento vertical *//* Cor de fundo para separar da imagem principal */
+}
+
+.header-sobre-mim_img {
+  width: 150px; /* Tamanho fixo da imagem */
+  height: 150px;
+  border-radius: 50%; /* Forma circular */
+  border: 5px solid #70cd32; /* Bordas verdes */
+  overflow: hidden; /* Garante que a imagem não exceda os limites */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5); /* Sombra elegante */
+}
+
+.header-sobre-mim_img img {
+  width: 100%; /* Garante que a imagem preencha o container */
+  height: 100%;
+  object-fit: cover; /* Faz o recorte proporcional da imagem */
+}
+
+/* Estilo para seções de texto */
+section {
+  margin: 20px 40px; /* Adiciona margem ao redor das seções */
+  line-height: 1.8; /* Define o espaçamento entre linhas */
+  text-align: left; /* Alinha o texto à esquerda */
+}
+
+/* Estilo específico para introdução */
+#introducao p, #minha-historia p {
+  text-indent: 20px; /* Identação para trazer a descrição mais à direita */
+  margin-bottom: 15px; /* Espaçamento entre parágrafos */
+  line-height: 1.8; /* Espaçamento maior entre as linhas */
+  max-width: 800px; /* Define uma largura máxima para facilitar a leitura */
+  word-wrap: break-word; /* Garante que o texto quebre corretamente */
+}
+
+/* Ajusta os títulos */
+section h1, section h2 {
+  margin-bottom: 10px; /* Espaçamento inferior para os títulos */
+  font-size: 24px; /* Tamanho do título */
+  text-transform: uppercase; /* Texto em caixa alta */
+}
+
+/* Adiciona um destaque para o nome principal */
+#introducao h1 {
+  font-size: 35px; /* Maior destaque para o título do nome */
+  color: #DAA520;
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.8); /* Cor dourada */
+}
+
+#minha-historia h2 {
+  color: #DAA520;
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.8);
+}
+
+#projetos h2 {
+  color: #DAA520;
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.8);
+}
+
+#contato h2 {
+  color: #DAA520;
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.8);
 }
