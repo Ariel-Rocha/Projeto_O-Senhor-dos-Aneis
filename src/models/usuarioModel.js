@@ -46,9 +46,23 @@ ON
     return database.executar(instrucaoSql);
  }
 
+
+ function listarAlturasRanking(){
+    var instrucaoSql = `SELECT u.nome, MAX(a.altura_hobbits) AS altura_hobbits
+FROM alturas_usuarios a
+JOIN usuario u ON a.fk_usuario = u.id
+GROUP BY u.nome
+ORDER BY altura_hobbits DESC;
+
+`
+
+    return database.executar(instrucaoSql);
+ }
+
 module.exports = {
     autenticar,
     cadastrar,
     cadastrarAlturas,
-    listarAlturas
+    listarAlturas,
+    listarAlturasRanking
 }; 

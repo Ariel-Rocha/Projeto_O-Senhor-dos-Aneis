@@ -17,6 +17,68 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
         rel="stylesheet">
+
+        <style>
+.cards {
+    display: flex;
+    justify-content: space-around; /* Espaça os KPIs uniformemente */
+    flex-wrap: wrap; /* Permite que os indicadores quebrem linha em telas menores */
+    padding: 20px;
+    gap: 20px; /* Espaçamento entre os KPIs */
+}
+
+/* Estilo individual para cada KPI */
+.card {
+    background: linear-gradient(135deg, #FFD700, #DAA520); /* Fundo degradê dourado */
+    color: #1a1a1a; /* Texto escuro para contraste */
+    text-align: center; /* Centraliza o conteúdo */
+    border-radius: 10px; /* Bordas arredondadas */
+    padding: 20px; /* Espaçamento interno */
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5); /* Sombra para destaque */
+    width: 250px; /* Largura fixa */
+    min-height: 150px; /* Altura mínima */
+    display: flex;
+    flex-direction: column; /* Alinha o conteúdo verticalmente */
+    justify-content: space-between; /* Espaça título e valor */
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out; /* Animações suaves */
+}
+
+/* Estilo para o título dos KPIs */
+.card h2 {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    text-transform: uppercase; /* Texto em maiúsculas */
+}
+
+/* Estilo para o valor dos KPIs */
+.card p {
+    font-size: 24px;
+    font-weight: bold;
+    margin: 0;
+    color: #333;
+}
+
+/* Efeito ao passar o mouse sobre os KPIs */
+.card:hover {
+    transform: scale(1.05); /* Leve aumento no tamanho */
+    box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.6); /* Sombra mais intensa */
+}
+
+/* Estilo para telas menores */
+@media (max-width: 768px) {
+    .cards {
+        flex-direction: column; /* Alinha os KPIs verticalmente */
+        align-items: center; /* Centraliza o conteúdo */
+    }
+
+    .card {
+        width: 90%; /* Ajusta largura para telas menores */
+    }
+}
+
+
+        </style>
 </head>
 
 <body onload="exibirIndicadores()">
@@ -40,12 +102,6 @@
             <div class="btn-nav-white">
                 <a href="./dashboard.html">
                     <h3>Gráficos</h3>
-                </a>
-            </div>
-
-            <div class="btn-nav-white">
-                <a href="./mural.html">
-                    <h3>Mural de Avisos</h3>
                 </a>
             </div>
 
@@ -115,6 +171,8 @@
 </body>
 
 <script>
+
+b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
 
 function exibirIndicadores() {
     fetch("/usuarios/listarAlturas", {

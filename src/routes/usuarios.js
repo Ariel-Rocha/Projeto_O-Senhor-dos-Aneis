@@ -19,5 +19,8 @@ router.get("/listarAlturas", function (req, res){
 usuarioController.listarAlturas(req,res);
 }) 
 
-
+router.get("/listarAlturasRanking", function (req, res){
+    usuarioController.listarAlturasRanking(req,res);
+    }) 
+    
 module.exports = router;

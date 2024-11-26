@@ -1,5 +1,4 @@
 var usuarioModel = require("../models/usuarioModel");
-var aquarioModel = require("../models/aquarioModel");
 
 function autenticar(req, res) {
     var email = req.body.emailServer;
@@ -109,9 +108,16 @@ function listarAlturas(req,res){
         res.status(200).json(resultado)
     }))
 }
+
+function listarAlturasRanking(req,res){
+    usuarioModel.listarAlturasRanking(req,res).then((resultado =>{
+        res.status(200).json(resultado)
+    }))
+}
 module.exports = {
     autenticar,
     cadastrar,
     cadastrarAlturas,
-    listarAlturas
+    listarAlturas,
+    listarAlturasRanking
 }

@@ -28,7 +28,7 @@
 
 <!-- <body onload=" atualizarFeed()"> -->
 
-<body>
+<body onload="listarAlturasRanking()">
 
     <div class="janela">
         <div class="header-left">
@@ -52,12 +52,6 @@
 
             </div>
 
-            <div class="btn-nav-white">
-                <a href="./mural.html">
-                    <h3>Mural de Avisos</h3>
-                </a>
-            </div>
-
             <div class="btn-logout" onclick="limparSessao()">
                 <h3>Sair</h3>
             </div>
@@ -69,10 +63,9 @@
             </div>
 
             <div class="btns-dash" id="btnAquario">
-                <!-- O gráfico é chamado de acordo com o id (fk_aquario) do banco  -->
-            </div>
-            <div id="graficos">
-            </div>
+                <div class="chart">
+                    <canvas id="myChart"></canvas>
+                  </div>    
         </div>
     </div>
 
@@ -85,9 +78,45 @@
     b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
 
     let proximaAtualizacao;
-
+    var listaAlturasRanking = []
+    var listaNomeRanking = []
     window.onload = exibirAquariosDoUsuario();
-
+    function listarAlturasRanking() {
+    fetch("/usuarios/listarAlturasRanking", {
+      method: "GET",
+    }).then((res => {
+      res.json().then((json) => {
+        console.log(json)
+        for (let index = 0; index < json.length; index++) {
+            listaAlturasRanking.push(json[index].altura_hobbits)
+            listaNomeRanking.push(json[index].nome)
+        }
+      })
+    }))
+    setTimeout(() => {
+        const ctx = document.getElementById("myChart");
+      myChart = new Chart(ctx, {
+        type: "line",
+        data: {
+          labels: listaNomeRanking,
+          datasets: [{
+            label: `Ranking alturas`,
+            data: listaAlturasRanking,
+            borderWidth: 2,
+            borderColor: "#ffffff ",
+            backgroundColor: "#ffffff",
+          }],
+        },
+        option: {
+          scales: {
+            y: {
+              beginAtZero: true,
+            },
+          },
+        },
+      });
+    }, 500);
+  }
     function exibirAquariosDoUsuario() {
         var aquarios = JSON.parse(sessionStorage.AQUARIOS);
         aquarios.forEach(item => {

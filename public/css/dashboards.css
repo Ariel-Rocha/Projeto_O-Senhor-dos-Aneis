@@ -16,101 +16,94 @@ body {
   justify-content: center;
 }
 
+/* Seção do formulário cobrindo toda a página à direita */
 .dash-right .avisos {
-  width: 100%;
-  color: rgb(216, 216, 216);
- font-family: 'Ringbearer', serif;
+  width: 100%; /* Cobre toda a largura disponível */
+  height: 100vh; /* Cobre toda a altura da viewport */
+  background-color: #556B2F; /* Fundo verde musgo */
+  color: #FFD700; /* Texto dourado */
+  font-family: 'Ringbearer', serif;
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* Centraliza verticalmente */
+  align-items: center; /* Centraliza horizontalmente */
+  padding: 20px; /* Espaçamento interno */
+  box-sizing: border-box; /* Garante que padding não ultrapasse o tamanho */
 }
 
+/* Container principal do formulário */
 .dash-right .avisos .container {
+  width: 90%; /* Reduz a largura para criar margem nas laterais */
+  max-width: 600px; /* Limita a largura máxima */
+  background-color: #1A1A1D; /* Fundo escuro para destacar o formulário */
+  border-radius: 10px; /* Bordas arredondadas */
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5); /* Sombra para destacar */
+  padding: 20px; /* Espaçamento interno */
   display: flex;
   flex-direction: column;
-  align-items: center;
+  gap: 20px; /* Espaçamento entre os elementos */
 }
 
-.dash-right .avisos .container .div-form {
-  width: 95%;
+/* Títulos dos campos */
+.dash-right .avisos .container label {
+  color: #FFD700; /* Texto dourado */
+  font-size: 16px;
+  font-weight: bold;
+  margin-bottom: 5px;
 }
 
-.dash-right .avisos .container .div-form #form_postagem {
-  width: 95%;
-}
-
-.dash-right .avisos .div-form label {
-  width: 95%;
-}
-
-.dash-right .avisos .div-form input {
-  width: 95%;
-  border-radius: 5px;
-}
-
-.dash-right .avisos .div-form textarea {
-  width: 95%;
-  border: 3px solid #e6005a;
-  background-color: white;
-  border-radius: 5px;
-}
-
-.dash-right .avisos .div-form button {
-  cursor: pointer;
- font-family: 'Ringbearer', serif;
-  border: 0;
-  border-radius: 5px;
-  font-weight: 600;
-  font-size: 18px;
-  padding: 10px 15px;
-  color: white;
-  background-color: #e6005a;
-  width: 120px;
-}
-
-.publicacao-btn-editar {
-  cursor: pointer;
- font-family: 'Ringbearer', serif;
-  border: 0;
-  border-radius: 5px;
-  font-weight: 600;
+/* Campos de entrada */
+.dash-right .avisos .container input,
+.dash-right .avisos .container textarea {
+  width: 100%; /* Ocupa toda a largura do container */
+  padding: 10px; /* Espaçamento interno */
+  border-radius: 5px; /* Bordas arredondadas */
   font-size: 14px;
-  padding: 5px 8px;
-  color: white;
-  background-color: #e6005a;
-  width: 80px;
+  border: 2px solid #FFD700; /* Borda dourada */
+  background-color: #FFFFFF; /* Fundo branco */
+  color: #333; /* Texto escuro */
+  box-sizing: border-box; /* Garante que padding não ultrapasse o tamanho */
 }
 
-.publicacao {
-  display: flex;
-  flex-wrap: wrap;
-  align-content: stretch;
-  flex-direction: column;
-  justify-content: center;
-  align-items: stretch;
-  border-bottom: 3px solid #e6005a;
-  padding: 20px;
-}
-
-.publicacao>*:not(:last-child) {
-  padding: 0 0 10px 0;
-}
-
-.div-results {
-  width: 100%;
-}
-
-.div-results .feed-container {
-  background-color: #212124;
+/* Botão principal */
+.dash-right .avisos .container button {
+  background-color: #FFD700; /* Fundo dourado */
+  color: #1A1A1D; /* Texto escuro */
+  font-family: 'Ringbearer', serif;
+  font-size: 16px;
+  font-weight: bold;
+  border: none;
   border-radius: 5px;
-  margin-bottom: 80px;
+  padding: 12px 20px; /* Espaçamento interno */
+  cursor: pointer; /* Define o cursor como "mãozinha" */
+  text-transform: uppercase; /* Texto em maiúsculas */
+  transition: all 0.3s ease-in-out; /* Animações suaves */
 }
 
-.div-buttons {
-  display: flex;
-  justify-content: flex-end;
+/* Efeito hover no botão */
+.dash-right .avisos .container button:hover {
+  background-color: black; /* Fundo preto */
+  color: #FFD700; /* Texto dourado */
+  transform: scale(1.05); /* Leve aumento no tamanho */
 }
 
-.div-buttons>* {
-  margin-left: 30px;
+/* Responsividade */
+@media (max-width: 768px) {
+  .dash-right .avisos {
+    padding: 10px; /* Reduz o espaçamento interno */
+  }
+
+  .dash-right .avisos .container {
+    width: 100%; /* Ajusta para caber melhor em telas pequenas */
+    padding: 15px; /* Reduz o espaçamento interno */
+  }
+
+  .dash-right .avisos .container button {
+    font-size: 14px; /* Ajusta o tamanho do texto */
+    padding: 10px 15px; /* Reduz o espaçamento interno */
+  }
 }
+
 
 /* pagina graficos */
 
@@ -123,7 +116,10 @@ body {
   position: relative;
   top: 0;
   left: 20%;
-  background-image: url('../assets/imagens/lord-of-the-rings-wallpaper-for-ipad-1920x1080-hd-for-ipad-apps-s4husiz6bz8aavpz.webp');
+  background-image: url('../assets/imagens/Gandalf-dashboard.png');
+  background-repeat: no-repeat;
+  background-size: cover; /* Faz a imagem cobrir toda a área */
+  background-position: center; /* Centraliza a imagem */
   height: 100vh;
   overflow: auto;
 }
@@ -261,7 +257,7 @@ body {
   font-weight: 600;
   font-size: 18px;
   padding: 10px 15px;
-  color: #e6005a;
+  color: #DAA520;
   background-color: white;
   margin: 5px;
   border-radius: 3px;
@@ -270,11 +266,11 @@ body {
 
 .btn-pink {
   color: white;
-  background-color: #e6005a;
+  background-color: #DAA520;
 }
 
 .btn-white {
-  color: #e6005a;
+  color: #DAA520;
   background-color: white;
 
 }
@@ -323,15 +319,15 @@ canvas {
   flex-direction: column;
   justify-content: space-evenly;
   align-items: center;
-  border-right: 3px solid #32b9cd;
-  background-color: #212124;
+  border-right: 3px solid #08b851;
+  background-color: #2f4538;
 }
 
 .dash-right {
   display: flex;
   width: 70%;
   height: fit-content;
-  background-image: url('../assets/imagens/lord-of-the-rings-wallpaper-for-ipad-1920x1080-hd-for-ipad-apps-s4husiz6bz8aavpz.webp') ;
+  background-image: url('../assets/imagens/cd2270d861126914ea12e1254b4d1b2d.jpg') ;
   position: relative;
   top: 0;
   left: 25%;
@@ -360,44 +356,98 @@ canvas {
 }
 
 .btn-nav {
-  width: 40%;
-  color: white;
-  background-color: #DAA520;
-  border-radius: 5px;
-  text-align: center;
-  padding: 2% 5%;
+  display: flex;
+  justify-content: center; /* Centraliza o texto horizontalmente */
+  align-items: center; /* Centraliza o texto verticalmente */
+  width: 40%; /* Define a largura dos botões */
+  color: white; /* Cor do texto */
+  background-color: #DAA520; /* Fundo dourado */
+  border-radius: 5px; /* Bordas arredondadas */
+  text-align: center; /* Centraliza o texto */
+  padding: 10px 15px; /* Ajusta o espaçamento interno */
+  font-size: 16px; /* Tamanho da fonte */
+  cursor: pointer; /* Define o cursor como "mãozinha" */
+  transition: all 0.3s ease-in-out; /* Suaviza animações */
 }
 
+/* Efeito ao passar o mouse */
+.btn-nav:hover {
+  background-color: #FFC107; /* Fundo dourado mais claro */
+  color: black; /* Texto escuro */
+  transform: scale(1.05); /* Leve aumento no tamanho */
+}
+
+/* Botão branco com borda dourada */
 .btn-nav-white {
-  width: 40%;
-  background-color: white;
-  border: 3px solid #DAA520;
-  border-radius: 5px;
-  text-align: center;
-  padding: 2% 5%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 40%; /* Define a largura dos botões */
+  background-color: white; /* Fundo branco */
+  border: 3px solid #DAA520; /* Borda dourada */
+  border-radius: 5px; /* Bordas arredondadas */
+  text-align: center; /* Centraliza o texto */
+  padding: 10px 15px; /* Ajusta o espaçamento interno */
+  font-size: 16px; /* Tamanho da fonte */
+  cursor: pointer; /* Define o cursor como "mãozinha" */
+  transition: all 0.3s ease-in-out; /* Suaviza animações */
 }
 
+/* Texto do botão branco */
 .btn-nav-white h3 {
-  color: #e6005a;
+  display: flex;
+  justify-content: center;
+  color: #DAA520; /* Texto dourado */
   padding: 0;
   margin: 0;
 }
 
+/* Efeito ao passar o mouse no botão branco */
+.btn-nav-white:hover {
+  background-color: #FFF8DC; /* Fundo bege claro */
+  border-color: #FFC107; /* Borda dourada mais clara */
+  color: black; /* Texto escuro */
+}
+
+/* Texto dos botões dourados e logout */
 .btn-nav h3,
 .btn-logout h3 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   margin: 0;
   padding: 0;
+  font-size: 16px; /* Tamanho da fonte */
 }
 
+/* Botão de logout */
 .btn-logout {
-  margin: 0;
-  padding: 0;
-  width: 20%;
-  background-color: #32b9cd;
-  color: white;
-  border-radius: 10px;
-  text-align: center;
-  padding: 10px 15px;
-  margin-bottom: 100px;
-  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 20%; /* Define largura menor para o botão logout */
+  background-color: #0aaf4f; /* Fundo verde */
+  color: white; /* Texto branco */
+  border-radius: 10px; /* Bordas arredondadas */
+  text-align: center; /* Centraliza o texto */
+  padding: 10px 15px; /* Ajusta o espaçamento interno */
+  font-size: 16px; /* Tamanho da fonte */
+  cursor: pointer; /* Define o cursor como "mãozinha" */
+  margin-bottom: 100px; /* Adiciona espaço inferior */
+  transition: all 0.3s ease-in-out; /* Suaviza animações */
+}
+
+/* Efeito ao passar o mouse no botão logout */
+.btn-logout:hover {
+  background-color: #0fbc5f; /* Fundo verde mais claro */
+  transform: scale(1.05); /* Leve aumento no tamanho */
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .btn-nav, .btn-nav-white, .btn-logout {
+    width: 80%; /* Ajusta a largura para telas menores */
+    font-size: 14px; /* Reduz o tamanho da fonte */
+    padding: 8px; /* Ajusta o espaçamento interno */
+  }
 }
