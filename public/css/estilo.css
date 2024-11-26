@@ -21,8 +21,8 @@ body {
 
 @media (max-width: 768px) {
   #resultado {
-      font-size: 1rem; /* Ajusta o tamanho da fonte */
-      padding: 10px; /* Dá mais espaço ao conteúdo */
+      font-size: 1rem; 
+      padding: 10px; 
   }
 }
 
@@ -62,26 +62,16 @@ header {
 .menu {
   width: 700px;
   height: 120px;
-  /* Altura ajustada para dar mais espaço */
   background-image: url('../assets/imagens/navbar-bg.png');
-  /* Caminho correto */
   background-size: 100% 100%;
-  /* Garante que a imagem cubra toda a área */
   background-repeat: no-repeat;
-  /* Evita repetição */
   background-position: center;
-  /* Centraliza a imagem */
   padding: 0;
-  /* Espaçamento interno */
   border-radius: 30px;
-  /* Bordas arredondadas */
   display: flex;
   justify-content: space-around;
-  /* Espaça os itens uniformemente */
   align-items: center;
-  /* Centraliza verticalmente */
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
-  /* Sombra leve */
   margin: 20px auto;
   overflow: hidden;
 }
@@ -90,12 +80,9 @@ header {
 .menu ul {
   display: flex;
   justify-content: space-between;
-  /* Espaçamento entre os itens */
   align-items: center;
   list-style: none;
   width: 100%;
-  /* Remove os marcadores */
-  /* Preenche toda a largura disponível */
   padding: 0;
   margin: 0;
 }
@@ -106,17 +93,14 @@ header {
   text-decoration: none;
   font-size: 18px;
   padding: 10px 15px;
-  /* Ajusta o tamanho dos links */
   border-radius: 8px;
   text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8);
-  /* Adiciona uma sombra */
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .menu a:hover {
   color: #DAA520;
   text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.8);
-  /* Destaque ao passar o mouse */
 }
 
 
@@ -234,7 +218,6 @@ nav a {
 
 a {
   color: #DAA520;
-  /* Cor branca, por exemplo */
   text-decoration: none;
   /* Remove o sublinhado */
 }
@@ -242,7 +225,6 @@ a {
 /* Altera a cor dos links quando o usuário passa o mouse */
 a:hover {
   color: #FFFFFF;
-  /* Cor dourada ao passar o mouse */
 }
 
 /*Galeria dos personagens */
@@ -521,15 +503,11 @@ body {
 
 .card label {
   background-color: yellow;
-  /* Fundo amarelo */
   color: black;
-  /* Texto preto */
   font-weight: bold;
   /* Texto mais visível */
   padding: 5px;
-  /* Espaçamento interno */
   border-radius: 3px;
-  /* Bordas arredondadas */
   display: inline-block;
   /* Ajuste ao tamanho do texto */
   margin-bottom: 10px;
@@ -703,7 +681,7 @@ input {
   flex-direction: column;
   overflow: visible; /* Permite que o conteúdo extrapole os limites */
   min-height: var(--tamanho-simulador); /* Altura mínima para evitar corte */
-  height: auto; /* Ajusta a altura conforme o conteúdo */
+  height: auto; 
   padding: 20px;
   border-radius: 8px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
@@ -713,31 +691,31 @@ input {
 /* Inputs e Botões - Simulador */
 .simulador input {
   font-family: 'Ringbearer', serif;
-  width: 230px; /* Ajuste de largura */
-  padding: 8px; /* Reduz o espaçamento interno */
-  font-size: 14px; /* Tamanho de fonte menor */
-  border: 2px solid #DAA520; /* Cor do contorno */
-  border-radius: 5px; /* Bordas arredondadas */
-  margin: 10px auto; /* Margem para separação */
+  width: 230px; 
+  padding: 8px; 
+  font-size: 14px; 
+  border: 2px solid #DAA520; 
+  border-radius: 5px; 
+  margin: 10px auto; 
   display: block; /* Centraliza dentro do simulador */
-  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1); /* Sombra leve */
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1); 
 }
 
 button {
   font-family: 'Ringbearer', serif;
-  padding: 8px; /* Ajusta o preenchimento interno */
-  margin: 15px; /* Espaçamento entre os botões */
-  border-radius: 5px; /* Bordas arredondadas */
-  border: none; /* Remove as bordas */
-  font-size: 14px; /* Tamanho do texto */
-  background-color: #FFD700; /* Cor do botão */
-  color: black; /* Cor do texto */
-  cursor: pointer; /* Ícone de clique */
+  padding: 8px; 
+  margin: 15px; 
+  border-radius: 5px; 
+  border: none; 
+  font-size: 14px; 
+  background-color: #FFD700; 
+  color: black; 
+  cursor: pointer; 
   width: 180px; /* Ajusta automaticamente ao texto */
 }
 
 button:hover {
-  background-color: #FFC107; /* Cor ao passar o mouse */
+  background-color: #FFC107; 
 }
 
 .simulador h2 {
@@ -785,13 +763,13 @@ button:hover {
   }
 
   #vencedores {
-    font-size: 14px; /* Texto menor para caber na tela */
-    margin-top: 15px; /* Espaçamento menor */
+    font-size: 14px; 
+    margin-top: 15px; 
   }
 
   #resultado {
-    font-size: 14px; /* Texto menor para a lista de resultados */
-    margin-bottom: 20px; /* Espaço adicional inferior */
+    font-size: 14px; 
+    margin-bottom: 20px; 
   }
 }
 
@@ -799,43 +777,43 @@ button:hover {
 /*dashboard */ 
 /* Estilo geral para a área do gráfico */
 .chart {
-  background-color: #1a1a1a; /* Fundo escuro para destaque */
-  padding: 20px; /* Espaçamento interno */
-  border-radius: 10px; /* Bordas arredondadas */
-  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5); /* Sombra para destaque */
+  background-color: #1a1a1a;
+  padding: 20px; 
+  border-radius: 10px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5); 
   margin: 20px auto; /* Centraliza na tela com margem superior/inferior */
-  max-width: 80%; /* Limita a largura em telas maiores */
+  max-width: 80%; 
 }
 
 /* Canvas do Chart.js */
 .chart canvas {
   display: block; /* Garante que o gráfico seja exibido como um bloco */
-  margin: 0 auto; /* Centraliza horizontalmente */
+  margin: 0 auto; 
   max-width: 100%; /* Garante responsividade */
   height: auto; /* Ajusta altura automaticamente */
-  border: 2px solid #FFD700; /* Borda dourada para destacar o gráfico */
-  border-radius: 8px; /* Bordas arredondadas */
+  border: 2px solid #FFD700; 
+  border-radius: 8px; 
 }
 
 /* Títulos e rótulos do gráfico */
 .tituloGraficos {
   font-family: 'Exo 2', sans-serif;
-  color: #DAA520; /* Cor dourada para os títulos */
-  text-align: center; /* Centraliza o texto */
-  font-size: 24px; /* Aumenta o tamanho da fonte */
-  margin-bottom: 15px; /* Espaço entre o título e o gráfico */
+  color: #DAA520; 
+  text-align: center; 
+  font-size: 24px; 
+  margin-bottom: 15px; 
 }
 
 /* Botões do dashboard */
 .btn-chart {
-  background-color: #FFD700; /* Fundo dourado */
-  color: #1a1a1a; /* Texto escuro */
-  border: none; /* Remove bordas padrão */
-  border-radius: 5px; /* Bordas arredondadas */
-  padding: 10px 15px; /* Ajusta espaçamento interno */
-  font-size: 16px; /* Tamanho da fonte */
-  cursor: pointer; /* Ícone de clique */
-  margin: 5px; /* Margem ao redor dos botões */
+  background-color: #FFD700; 
+  color: #1a1a1a;
+  border: none; 
+  border-radius: 5px; 
+  padding: 10px 15px; 
+  font-size: 16px; 
+  cursor: pointer; 
+  margin: 5px; 
   transition: background-color 0.3s, transform 0.2s; /* Animações suaves */
 }
 
@@ -848,7 +826,7 @@ button:hover {
 /* Ajustes para dispositivos menores */
 @media (max-width: 768px) {
   .chart {
-      padding: 10px; /* Reduz o espaçamento interno */
+      padding: 10px; 
       margin: 10px auto; /* Ajusta margens */
       max-width: 95%; /* Ajusta a largura para telas menores */
   }
@@ -928,18 +906,18 @@ button:hover {
 /* Estilização da imagem no Sobre Mim */
 .header-sobre-mim {
   display: flex;
-  justify-content: center; /* Centraliza horizontalmente */
-  align-items: center; /* Centraliza verticalmente */
-  padding: 20px 0; /* Espaçamento vertical *//* Cor de fundo para separar da imagem principal */
+  justify-content: center; 
+  align-items: center; 
+  padding: 20px 0; 
 }
 
 .header-sobre-mim_img {
-  width: 150px; /* Tamanho fixo da imagem */
+  width: 150px; 
   height: 150px;
-  border-radius: 50%; /* Forma circular */
-  border: 5px solid #70cd32; /* Bordas verdes */
+  border-radius: 50%; 
+  border: 5px solid #70cd32; 
   overflow: hidden; /* Garante que a imagem não exceda os limites */
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5); /* Sombra elegante */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5); 
 }
 
 .header-sobre-mim_img img {
@@ -950,32 +928,32 @@ button:hover {
 
 /* Estilo para seções de texto */
 section {
-  margin: 20px 40px; /* Adiciona margem ao redor das seções */
-  line-height: 1.8; /* Define o espaçamento entre linhas */
-  text-align: left; /* Alinha o texto à esquerda */
+  margin: 20px 40px; 
+  line-height: 1.8; 
+  text-align: left; 
 }
 
 /* Estilo específico para introdução */
 #introducao p, #minha-historia p {
-  text-indent: 20px; /* Identação para trazer a descrição mais à direita */
-  margin-bottom: 15px; /* Espaçamento entre parágrafos */
-  line-height: 1.8; /* Espaçamento maior entre as linhas */
-  max-width: 800px; /* Define uma largura máxima para facilitar a leitura */
+  text-indent: 20px; 
+  margin-bottom: 15px; 
+  line-height: 1.8; 
+  max-width: 800px; 
   word-wrap: break-word; /* Garante que o texto quebre corretamente */
 }
 
 /* Ajusta os títulos */
 section h1, section h2 {
-  margin-bottom: 10px; /* Espaçamento inferior para os títulos */
-  font-size: 24px; /* Tamanho do título */
+  margin-bottom: 10px; 
+  font-size: 24px; 
   text-transform: uppercase; /* Texto em caixa alta */
 }
 
 /* Adiciona um destaque para o nome principal */
 #introducao h1 {
-  font-size: 35px; /* Maior destaque para o título do nome */
+  font-size: 35px; 
   color: #DAA520;
-  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.8); /* Cor dourada */
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.8); 
 }
 
 #minha-historia h2 {
