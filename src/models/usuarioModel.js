@@ -22,9 +22,6 @@ function cadastrar(nome, email, senha) {
     return database.executar(instrucaoSql);
 }
 function cadastrarAlturas(fkusuario, altura, alturaHobbits) {
-  
-    
-   
     var instrucaoSql = `
         INSERT INTO alturas_usuarios (fk_usuario, altura, altura_hobbits) VALUES (${fkusuario}, ${altura}, ${alturaHobbits});
     `;
@@ -47,22 +44,27 @@ ON
  }
 
 
- function listarAlturasRanking(){
-    var instrucaoSql = `SELECT u.nome, MAX(a.altura_hobbits) AS altura_hobbits
-FROM alturas_usuarios a
-JOIN usuario u ON a.fk_usuario = u.id
-GROUP BY u.nome
-ORDER BY altura_hobbits DESC;
+ function listarRankingAlturas() {
+    console.log("Listando o ranking das alturas dos usuários");
+    const query = `
+        SELECT u.nome, a.altura_hobbits
+        FROM usuario u
+        JOIN alturas_usuarios a ON u.id = a.fk_usuario
+        ORDER BY a.altura_hobbits DESC;
+    `;
+    console.log("Executando query: \n" + query);
+    return database.executar(query);
+}
 
-`
-
-    return database.executar(instrucaoSql);
- }
+module.exports = {
+    ...module.exports,
+    listarRankingAlturas
+};
 
 module.exports = {
     autenticar,
     cadastrar,
     cadastrarAlturas,
     listarAlturas,
-    listarAlturasRanking
+    listarRankingAlturas
 }; 
