@@ -1,0 +1,45 @@
+.card {
+    background-color: #f46200;
+    padding: 20px;
+    border-radius: 10px;
+    color: white;
+    text-align: center;
+    width: 50%;
+    margin: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+}
+
+th, td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: center;
+}
+
+th {
+    background-color: #282828;
+    color: white;
+}
+
+tr:nth-child(even) {
+    background-color: #f0f0f0;
+    color: black;
+}
+
+button {
+    background-color: #000;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: white;
+    color: #f46200;
+}

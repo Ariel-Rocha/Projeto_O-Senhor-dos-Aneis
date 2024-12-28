@@ -43,28 +43,9 @@ ON
     return database.executar(instrucaoSql);
  }
 
-
- function listarRankingAlturas() {
-    console.log("Listando o ranking das alturas dos usuários");
-    const query = `
-        SELECT u.nome, a.altura_hobbits
-        FROM usuario u
-        JOIN alturas_usuarios a ON u.id = a.fk_usuario
-        ORDER BY a.altura_hobbits DESC;
-    `;
-    console.log("Executando query: \n" + query);
-    return database.executar(query);
-}
-
-module.exports = {
-    ...module.exports,
-    listarRankingAlturas
-};
-
 module.exports = {
     autenticar,
     cadastrar,
     cadastrarAlturas,
-    listarAlturas,
-    listarRankingAlturas
+    listarAlturas
 }; 
