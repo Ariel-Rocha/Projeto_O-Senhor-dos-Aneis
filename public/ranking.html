@@ -2,6 +2,12 @@
 <html lang="pt-BR">
 
 <head>
+    <!-- Aqui estamos configurando o básico da página:
+         - Declarando que o HTML segue a versão moderna (HTML5).
+         - Definindo o idioma como português do Brasil.
+         - Configurando o charset como UTF-8 para suportar caracteres especiais.
+         - Tornando a página responsiva com viewport.
+         - Colocando o título "Ranking de Alturas" e puxando o CSS. -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ranking de Alturas</title>
@@ -9,9 +15,14 @@
 </head>
 
 <body>
+    <!-- Começamos com uma "card", que é tipo um quadrinho onde tudo fica organizado. -->
     <div class="card">
+        <!-- Título da página em destaque. -->
         <h1>Ranking de Alturas</h1>
+        
+        <!-- Aqui temos a tabela que vai exibir o ranking de alturas. -->
         <table border="1" id="tabelaRanking">
+            <!-- "thead" é a parte do cabeçalho da tabela (títulos das colunas). -->
             <thead>
                 <tr>
                     <th>Posição</th>
@@ -19,12 +30,57 @@
                     <th>Altura (Hobbits)</th>
                 </tr>
             </thead>
+            
+            <!-- "tbody" é onde vão aparecer os dados reais do ranking. -->
             <tbody>
-                <!-- Dados do ranking serão exibidos aqui -->
+                <!-- No começo, está vazio. O JS vai preencher com os dados da API. -->
             </tbody>
         </table>
+
+        <!-- Botão para voltar para a página inicial. Um link com botão estiloso. -->
         <a href="index.html"><button>Voltar</button></a>
     </div>
 </body>
 
 </html>
+
+
+<script>
+
+    function carregarRanking() {
+        // Função para buscar os dados do ranking na nossa API.
+
+        fetch("http://localhost:3333/usuarios/rankingAlturas")
+            // Primeiro passo: pega a resposta da API e transforma em JSON.
+            .then(function (response) {
+                return response.json();
+            })
+            // Segundo passo: com os dados em mãos, começamos a montar a tabela.
+            .then(function (dados) {
+                // Criamos uma variável vazia para ir montando o HTML da tabela.
+                var tabelaHTML = "";
+
+                // Vamos percorrer cada dado do ranking com um "for".
+                for (var i = 0; i < dados.length; i++) {
+                    // Cada linha da tabela é montada como string.
+                    tabelaHTML += "<tr>";
+                    tabelaHTML += "<td>" + (i + 1) + "</td>"; // Coluna: posição no ranking.
+                    tabelaHTML += "<td>" + dados[i].nome + "</td>"; // Coluna: nome.
+                    tabelaHTML += "<td>" + dados[i].altura_hobbits + "</td>"; // Coluna: altura.
+                    tabelaHTML += "</tr>";
+                }
+
+                // Depois que a tabela está pronta, colocamos tudo no "tbody".
+                var tabela = document.querySelector("#tabelaRanking tbody");
+                tabela.innerHTML = tabelaHTML;
+            })
+            // Se der algum problema na requisição, mostramos no console.
+            .catch(function (erro) {
+                console.error("Erro ao carregar o ranking:", erro);
+            });
+    }
+
+    // Assim que a página carrega, chamamos a função para preencher a tabela.
+    window.onload = carregarRanking;
+    
+</script>
