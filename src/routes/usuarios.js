@@ -18,3 +18,6 @@ router.get("/listarAlturas", function (req, res){
 usuarioController.listarAlturas(req,res);
 }) 
 
+router.get('/rankingAlturas', (req, res) => {
+    usuarioController.listarRanking(req, res);
+});
