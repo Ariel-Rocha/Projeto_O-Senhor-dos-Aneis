@@ -9,12 +9,10 @@ function autenticar(email, senha) {
     return database.executar(instrucaoSql);
 }
 
-// Coloque os mesmos parâmetros aqui. Vá para a var instrucaoSql
+
 function cadastrar(nome, email, senha) {
     console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function cadastrar():", nome, email, senha);
     
-    // Insira exatamente a query do banco aqui, lembrando da nomenclatura exata nos valores
-    //  e na ordem de inserção dos dados.
     var instrucaoSql = `
         INSERT INTO usuario (nome, email, senha) VALUES ('${nome}', '${email}', '${senha}');
     `;
@@ -22,6 +20,9 @@ function cadastrar(nome, email, senha) {
     return database.executar(instrucaoSql);
 }
 function cadastrarAlturas(fkusuario, altura, alturaHobbits) {
+  
+    
+   
     var instrucaoSql = `
         INSERT INTO alturas_usuarios (fk_usuario, altura, altura_hobbits) VALUES (${fkusuario}, ${altura}, ${alturaHobbits});
     `;
@@ -42,6 +43,17 @@ ON
 
     return database.executar(instrucaoSql);
  }
+ function listarRankingAlturas() {
+    console.log("Listando o ranking das alturas dos usuários");
+    const query = `
+        SELECT u.nome, a.altura_hobbits
+        FROM usuario u
+        JOIN alturas_usuarios a ON u.id = a.fk_usuario
+        ORDER BY a.altura_hobbits DESC;
+    `;
+    console.log("Executando query: \n" + query);
+    return database.executar(query);
+}
 
 module.exports = {
     autenticar,
