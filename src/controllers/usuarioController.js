@@ -109,10 +109,21 @@ function listarAlturas(req,res){
     }))
 }
 
+function listarRanking(req, res) {
+    usuarioModel.listarRankingAlturas()
+        .then((resultado) => {
+            res.status(200).json(resultado);
+        })
+        .catch((erro) => {
+            console.log("Houve um erro ao buscar o ranking:", erro.sqlMessage);
+            res.status(500).json(erro.sqlMessage);
+        });
+}
 
 module.exports = {
     autenticar,
     cadastrar,
     cadastrarAlturas,
     listarAlturas,
+    listarRanking, 
 };
