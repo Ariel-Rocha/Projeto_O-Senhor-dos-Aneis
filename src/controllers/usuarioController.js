@@ -109,21 +109,29 @@ function listarAlturas(req,res){
     }))
 }
 
+
+// 01-01-2025
+// criei a função para listar o ranking de alturas
 function listarRanking(req, res) {
+    // Chama a função listarRankingAlturas do usuarioModel para buscar os dados no banco de dados
     usuarioModel.listarRankingAlturas()
         .then((resultado) => {
+            // Se a consulta for bem-sucedida, retorna os resultados com o status HTTP 200 (OK)
             res.status(200).json(resultado);
         })
         .catch((erro) => {
+            // Em caso de erro, exibe o erro no console com uma mensagem
             console.log("Houve um erro ao buscar o ranking:", erro.sqlMessage);
+            // Retorna o erro com o status HTTP 500 (Erro interno do servidor)
             res.status(500).json(erro.sqlMessage);
         });
 }
 
+// Exporta as funções do controlador para serem usadas em outros módulos
 module.exports = {
-    autenticar,
-    cadastrar,
-    cadastrarAlturas,
-    listarAlturas,
-    listarRanking, 
+    autenticar,        // Função para autenticar usuários
+    cadastrar,         // Função para cadastrar novos usuários
+    cadastrarAlturas,  // Função para cadastrar as alturas dos usuários
+    listarAlturas,     // Função para listar as alturas cadastradas
+    listarRanking,     // Função recém-adicionada para listar o ranking de alturas
 };

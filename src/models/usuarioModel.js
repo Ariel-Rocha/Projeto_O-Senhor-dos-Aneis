@@ -47,21 +47,34 @@ ON
  }
 
 
- function listarRankingAlturas() {
+
+
+// Atualizei a model.js em 02/01/2025
+
+ // Abaixo adicionei a função que lista o ranking das alturas dos usuários - model.js atualizada em 02/01/2025
+function listarRankingAlturas() {
+    // Log para informar que a listagem do ranking está sendo iniciada
     console.log("Listando o ranking das alturas dos usuários");
+    
+    // Consultei o SQL para buscar os nomes dos usuários e alturas
+    // A tabela "usuario" é unida com a tabela "alturas_usuarios" com base no ID do usuário
+    // Os resultados são ordenados de forma decrescente pela altura ("altura_hobbits")
     const query = `
         SELECT u.nome, a.altura_hobbits
         FROM usuario u
         JOIN alturas_usuarios a ON u.id = a.fk_usuario
         ORDER BY a.altura_hobbits DESC;
     `;
+    
+    // Log para exibir a consulta que será executada
     console.log("Executando query: \n" + query);
+    
+    // Retornei o resultado da execução da consulta no banco de dados
     return database.executar(query);
 }
 
+// Exporta a função listarRankingAlturas para que possa ser usada em outros módulos
 module.exports = {
-    ...module.exports,
-    listarRankingAlturas
+    ...module.exports, 
+    listarRankingAlturas // Adicion a nova função
 };
-
-

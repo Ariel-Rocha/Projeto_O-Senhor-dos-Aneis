@@ -18,6 +18,11 @@ router.get("/listarAlturas", function (req, res){
 usuarioController.listarAlturas(req,res);
 }) 
 
+
+
+// criei uma rota para lidar com requisições GET na URL "/rankingAlturas" - 30-12-2024
 router.get('/rankingAlturas', (req, res) => {
+    // Chama a função listarRanking do controller de usuários
+    // Passa os objetos de requisição (req) e resposta (res) como parâmetros
     usuarioController.listarRanking(req, res);
 });

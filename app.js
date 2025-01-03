@@ -35,10 +35,13 @@ app.use("/medidas", medidasRouter);
 app.use("/aquarios", aquariosRouter);
 app.use("/empresas", empresasRouter);
 
-app.get("/ranking", (req, res) => {
-    res.sendFile(path.join(__dirname, "public/dashboard/ranking.html"));
-});
 
+// 03-01-2025
+// adicionei uma rota para o servidor que responde a requisições do tipo GET na URL "/ranking"
+app.get("/ranking", (req, res) => 
+    // res.senFIle enviará o arquivo "ranking.html" na raiz:"public/dashboard", como resposta.
+    res.sendFile("public/dashboard/ranking.html")
+);
 
 app.listen(PORTA_APP, function () {
     console.log(`

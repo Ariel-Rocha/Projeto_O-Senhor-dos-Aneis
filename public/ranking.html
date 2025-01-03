@@ -7,12 +7,12 @@
     <title>Ranking de Alturas</title>
     <link rel="stylesheet" href="./ranking.css">
 </head>
-
+<!-- 28/12/2024- Implementação da pagina html, ranking.html-->
 <body>
     <div class="card">
         <h1>Ranking de Alturas</h1>
         
-        <!-- Aqui temos a tabela que vai exibir o ranking de alturas. -->
+        <!-- Criei a tabela que vai exibir o ranking de alturas. -->
         <table border="1" id="tabelaRanking">
             <!-- "thead" é a parte do cabeçalho da tabela (títulos das colunas). -->
             <thead>
@@ -38,21 +38,21 @@
 
 
 <script>
-
+// 30/12/2024 - Script para a funcionalidades da tabela na pagina ranking.html
     function carregarRanking() {
-        // Função para buscar os dados do ranking na nossa API.
+        // Adicionei a funação para buscar os dados do ranking na API.
 
         fetch("http://localhost:3333/usuarios/rankingAlturas")
-            // Primeiro passo: pega a resposta da API e transforma em JSON.
+            // Primeiro passo: o fecth pega a resposta da API e transforma em JSON.
             .then(function (response) {
                 return response.json();
             })
-            // Segundo passo: com os dados em mãos, começamos a montar a tabela.
+            // Segundo passo: o then com os dados para a montar a tabela.
             .then(function (dados) {
-                // Criamos uma variável vazia para ir montando o HTML da tabela.
+                // Criei uma variável vazia para ir montando o HTML da tabela.
                 var tabelaHTML = "";
 
-                // Vamos percorrer cada dado do ranking com um "for".
+                // Cirei um for para percorrer cada dado do ranking 
                 for (var i = 0; i < dados.length; i++) {
                     // Cada linha da tabela é montada como string.
                     tabelaHTML += "<tr>";
@@ -66,13 +66,13 @@
                 var tabela = document.querySelector("#tabelaRanking tbody");
                 tabela.innerHTML = tabelaHTML;
             })
-            // Se der algum problema na requisição, mostramos no console.
+            // Se der algum problema na requisição, mostrará o erro no console.
             .catch(function (erro) {
                 console.error("Erro ao carregar o ranking:", erro);
             });
     }
 
-    // Assim que a página carrega, chamamos a função para preencher a tabela.
+    // Assim que a página carrega, chamará a função para preencher a tabela.
     window.onload = carregarRanking;
     
 </script>
