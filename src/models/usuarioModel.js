@@ -29,6 +29,8 @@ function cadastrarAlturas(fkusuario, altura, alturaHobbits) {
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
 }
+
+
  function listarAlturas(){
     var instrucaoSql = `SELECT 
     MAX(altura_hobbits) AS maior, 
@@ -43,6 +45,8 @@ ON
 
     return database.executar(instrucaoSql);
  }
+
+
  function listarRankingAlturas() {
     console.log("Listando o ranking das alturas dos usuários");
     const query = `
@@ -56,8 +60,8 @@ ON
 }
 
 module.exports = {
-    autenticar,
-    cadastrar,
-    cadastrarAlturas,
-    listarAlturas
-}; 
+    ...module.exports,
+    listarRankingAlturas
+};
+
+

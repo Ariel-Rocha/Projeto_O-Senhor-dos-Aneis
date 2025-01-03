@@ -35,6 +35,10 @@ app.use("/medidas", medidasRouter);
 app.use("/aquarios", aquariosRouter);
 app.use("/empresas", empresasRouter);
 
+app.get("/ranking", (req, res) => {
+    res.sendFile(path.join(__dirname, "public/dashboard/ranking.html"));
+});
+
 
 app.listen(PORTA_APP, function () {
     console.log(`
