@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz - O Senhor dos Anéis</title>
+</head>
+<body>
+    <h1>Quiz - O Senhor dos Anéis</h1>
+
+    <!-- Div para o Quiz -->
+    <div id="quiz"></div>
+
+    <button onclick="finalizarQuiz()">Finalizar Quiz</button>
+    <p id="resultado" style="margin-top: 20px; font-size: 18px;"></p>
+
+    <script>
+        // Array de perguntas e respostas
+        var perguntas = [
+            {
+                pergunta: "Qual é o nome do mago cinzento que ajuda Frodo?",
+                alternativas: { a: "Gandalf", b: "Saruman", c: "Radagast", d: "Sauron" },
+                correta: "a"
+            },
+            {
+                pergunta: "Qual é o nome do lugar onde o Um Anel foi forjado?",
+                alternativas: { a: "Mordor", b: "Valfenda", c: "Gondor", d: "Rohan" },
+                correta: "a"
+            },
+            {
+                pergunta: "Quem destrói o Um Anel?",
+                alternativas: { a: "Frodo", b: "Gollum", c: "Sam", d: "Aragorn" },
+                correta: "b"
+            },
+            {
+                pergunta: "Qual é o nome do povo de Legolas?",
+                alternativas: { a: "Hobbits", b: "Elfos", c: "Anões", d: "Homens" },
+                correta: "b"
+            },
+            {
+                pergunta: "Quem é o rei de Gondor?",
+                alternativas: { a: "Boromir", b: "Aragorn", c: "Faramir", d: "Théoden" },
+                correta: "b"
+            },
+            {
+                pergunta: "Qual é o nome da espada de Aragorn?",
+                alternativas: { a: "Narsil", b: "Andúril", c: "Glamdring", d: "Sting" },
+                correta: "b"
+            },
+            {
+                pergunta: "Qual é o nome da criatura que acompanha Frodo?",
+                alternativas: { a: "Sméagol", b: "Gollum", c: "Shelob", d: "Bilbo" },
+                correta: "b"
+            },
+            {
+                pergunta: "Quem é o Senhor do Escuro?",
+                alternativas: { a: "Saruman", b: "Sauron", c: "Melkor", d: "Thranduil" },
+                correta: "b"
+            },
+            {
+                pergunta: "Qual é o nome do reino de Théoden?",
+                alternativas: { a: "Rohan", b: "Mordor", c: "Gondor", d: "Valfenda" },
+                correta: "a"
+            },
+            {
+                pergunta: "Quantos membros há na Sociedade do Anel?",
+                alternativas: { a: "7", b: "9", c: "8", d: "10" },
+                correta: "b"
+            }
+        ];
+
+        // Referência para a div do Quiz
+        var quizDiv = document.getElementById("quiz");
+
+        // Construção do Quiz sem usar appendChild ou forEach
+        var quizHtml = "";
+        for (var index = 0; index < perguntas.length; index++) {
+            var q = perguntas[index];
+
+            // Adicionando perguntas e alternativas ao HTML
+            quizHtml += `
+                <p>${index + 1}. ${q.pergunta}</p>
+                <label><input type="radio" name="pergunta${index}" value="a"> ${q.alternativas.a}</label><br>
+                <label><input type="radio" name="pergunta${index}" value="b"> ${q.alternativas.b}</label><br>
+                <label><input type="radio" name="pergunta${index}" value="c"> ${q.alternativas.c}</label><br>
+                <label><input type="radio" name="pergunta${index}" value="d"> ${q.alternativas.d}</label><br>
+            `;
+        }
+
+        // Insere o conteúdo completo na div
+        quizDiv.innerHTML = quizHtml;
+
+        // Finaliza o Quiz
+        function finalizarQuiz() {
+            var pontuacao = 0;
+
+            // Verifica as respostas
+            for (var index = 0; index < perguntas.length; index++) {
+                var radios = document.getElementsByName("pergunta" + index);
+                var respostaSelecionada = null;
+
+                for (var i = 0; i < radios.length; i++) {
+                    if (radios[i].checked) {
+                        respostaSelecionada = radios[i].value;
+                        break;
+                    }
+                }
+
+                if (respostaSelecionada === perguntas[index].correta) {
+                    pontuacao++;
+                }
+            }
+
+            // Exibe o resultado
+            var resultado = document.getElementById("resultado");
+            resultado.innerText = `Você acertou ${pontuacao} de ${perguntas.length} perguntas!`;
+        }
+    </script>
+</body>
+</html>
