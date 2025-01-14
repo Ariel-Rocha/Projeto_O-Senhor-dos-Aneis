@@ -22,6 +22,8 @@ var medidasRouter = require("./src/routes/medidas");
 var aquariosRouter = require("./src/routes/aquarios");
 var empresasRouter = require("./src/routes/empresas");
 
+var quizRouter = require("./src/routes/quiz"); // Adiciono as rotas do quiz - 14-01-25
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, "public")));
@@ -35,6 +37,10 @@ app.use("/medidas", medidasRouter);
 app.use("/aquarios", aquariosRouter);
 app.use("/empresas", empresasRouter);
 
+app.use("/quiz", quizRouter); // Rota específica para o quiz - 14-01-25
+
+
+
 
 // 03-01-2025
 // adicionei uma rota para o servidor que responde a requisições do tipo GET na URL "/ranking"
@@ -42,6 +48,8 @@ app.get("/ranking", (req, res) =>
     // res.senFIle enviará o arquivo "ranking.html" na raiz:"public/dashboard", como resposta.
     res.sendFile("public/dashboard/ranking.html")
 );
+
+
 
 app.listen(PORTA_APP, function () {
     console.log(`
