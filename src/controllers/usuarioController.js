@@ -126,12 +126,48 @@ function listarRanking(req, res) {
             res.status(500).json(erro.sqlMessage);
         });
 }
+/**
+ * Controller para obter perguntas do quiz.
+ * Aqui chamo a função `obterPerguntas` do `quizModel`, que retorna as perguntas do banco de dados.
+ * Depois envio essas perguntas para o cliente.
+ */
+function obterPerguntas(req, res) {
+    quizModel.obterPerguntas()
+        .then((perguntas) => {
+            res.status(200).json(perguntas);
+        })
+        .catch((erro) => {
+            console.log("Erro ao obter perguntas:", erro.sqlMessage);
+            res.status(500).json(erro.sqlMessage);
+        });
+}
 
-// Exporta as funções do controlador para serem usadas em outros módulos
+/**
+ * Controller para verificar respostas do quiz.
+ * Aqui recebo as respostas enviadas pelo usuário no corpo da requisição e
+ * chamo a função `verificarRespostas` no `quizModel`.
+ * Retorno o número de acertos para o cliente.
+ */
+function verificarRespostas(req, res) {
+    var respostas = req.body.respostas;
+
+    quizModel.verificarRespostas(respostas)
+        .then((acertos) => {
+            res.status(200).json({ acertos });
+        })
+        .catch((erro) => {
+            console.log("Erro ao verificar respostas:", erro.sqlMessage);
+            res.status(500).json(erro.sqlMessage);
+        });
+}
+
+// Exporto todas as funções para que possam ser usadas nas rotas
 module.exports = {
-    autenticar,        // Função para autenticar usuários
-    cadastrar,         // Função para cadastrar novos usuários
-    cadastrarAlturas,  // Função para cadastrar as alturas dos usuários
-    listarAlturas,     // Função para listar as alturas cadastradas
-    listarRanking,     // Função recém-adicionada para listar o ranking de alturas
+    cadastrar,
+    autenticar,
+    cadastrarAlturas,
+    listarAlturas,
+    listarRanking,
+    obterPerguntas, // Adiciono a função para obter perguntas do quiz
+    verificarRespostas, // Adiciono a função para verificar respostas do quiz
 };
