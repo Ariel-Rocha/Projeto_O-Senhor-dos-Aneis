@@ -1,5 +1,7 @@
 var usuarioModel = require("../models/usuarioModel");
 
+
+
 function autenticar(req, res) {
     var email = req.body.emailServer;
     var senha = req.body.senhaServer;
@@ -126,48 +128,37 @@ function listarRanking(req, res) {
             res.status(500).json(erro.sqlMessage);
         });
 }
-/**
- * Controller para obter perguntas do quiz.
- * Aqui chamo a função `obterPerguntas` do `quizModel`, que retorna as perguntas do banco de dados.
- * Depois envio essas perguntas para o cliente.
- */
+
 function obterPerguntas(req, res) {
-    quizModel.obterPerguntas()
+    usuarioModel.obterPerguntas() // Alterado para usuarioModel
         .then((perguntas) => {
             res.status(200).json(perguntas);
         })
         .catch((erro) => {
-            console.log("Erro ao obter perguntas:", erro.sqlMessage);
-            res.status(500).json(erro.sqlMessage);
+            console.error("Erro ao obter perguntas:", erro);
+            res.status(500).json({ mensagem: "Erro ao obter perguntas", erro });
         });
 }
 
-/**
- * Controller para verificar respostas do quiz.
- * Aqui recebo as respostas enviadas pelo usuário no corpo da requisição e
- * chamo a função `verificarRespostas` no `quizModel`.
- * Retorno o número de acertos para o cliente.
- */
 function verificarRespostas(req, res) {
-    var respostas = req.body.respostas;
+    const respostas = req.body.respostas;
 
-    quizModel.verificarRespostas(respostas)
+    usuarioModel.verificarRespostas(respostas) // Alterado para usuarioModel
         .then((acertos) => {
             res.status(200).json({ acertos });
         })
         .catch((erro) => {
-            console.log("Erro ao verificar respostas:", erro.sqlMessage);
-            res.status(500).json(erro.sqlMessage);
+            console.error("Erro ao verificar respostas:", erro);
+            res.status(500).json({ mensagem: "Erro ao verificar respostas", erro });
         });
 }
 
-// Exporto todas as funções para que possam ser usadas nas rotas
 module.exports = {
     cadastrar,
     autenticar,
     cadastrarAlturas,
     listarAlturas,
     listarRanking,
-    obterPerguntas, // Adiciono a função para obter perguntas do quiz
-    verificarRespostas, // Adiciono a função para verificar respostas do quiz
+    obterPerguntas,
+    verificarRespostas,
 };

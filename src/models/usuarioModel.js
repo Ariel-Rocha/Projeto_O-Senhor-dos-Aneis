@@ -73,45 +73,36 @@ function listarRankingAlturas() {
     return database.executar(query);
 }
 
-// Função para buscar as perguntas do quiz no banco de dados
 function obterPerguntas() {
-    console.log("Buscando as perguntas do quiz.");
-    
-    const query = `
-        SELECT id, texto, alternativa_a, alternativa_b, alternativa_c, alternativa_d, correta 
+    var query = `
+        SELECT id, texto, alternativa_a, alternativa_b, alternativa_c, alternativa_d, correta
         FROM perguntas;
     `;
-    console.log("Executando query: \n" + query);
     return database.executar(query);
 }
 
-// Função para verificar as respostas do quiz
 function verificarRespostas(respostas) {
-    console.log("Verificando as respostas do quiz enviadas pelo usuário.");
-    
-    const query = `
-        SELECT id, correta 
+    var query = `
+        SELECT id, correta
         FROM perguntas;
     `;
-    console.log("Executando query: \n" + query);
     return database.executar(query).then((perguntas) => {
         let acertos = 0;
-        perguntas.forEach((pergunta, index) => {
-            if (respostas[index] === pergunta.correta) {
+        for (let i = 0; i < perguntas.length; i++) {
+            if (respostas[i] === perguntas[i].correta) {
                 acertos++;
             }
-        });
+        }
         return acertos;
     });
 }
 
-// Exporto as funções do modelo para serem usadas em outros módulos
 module.exports = {
     autenticar,
     cadastrar,
     cadastrarAlturas,
     listarAlturas,
     listarRankingAlturas,
-    obterPerguntas, // Adiciono a função para obter perguntas
-    verificarRespostas // Adiciono a função para verificar respostas
+    obterPerguntas, // Certifique-se de exportar estas funções
+    verificarRespostas,
 };
