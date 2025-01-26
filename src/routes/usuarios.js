@@ -35,5 +35,6 @@ router.post("/verificarRespostas", (req, res) => {
   usuarioController.verificarRespostas(req, res);
 });
 
+
 // Exporta o router
 module.exports = router;

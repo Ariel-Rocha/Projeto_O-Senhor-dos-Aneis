@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bem-vindo</title>
+    <link rel="stylesheet" href="./css/estilo.css">
+</head>
+
+<body>
+    <div class="container">
+        <h1>Bem-vindo, <span id="userName"></span>!</h1>
+        <p>Escolha uma das opções abaixo:</p>
+        <div class="buttons">
+            <button onclick="irParaQuiz()">Quiz</button>
+            <button onclick="irParaSimulador()">Simulador (Calculadora Hobbit)</button>
+            <button onclick="irParaDashboard()">Dashboard</button>
+        </div>
+    </div>
+
+    <script>
+        // Recupera o nome do usuário do localStorage
+        var userName = localStorage.getItem("userName");
+
+        // Verifica se o nome está disponível
+        if (userName && userName.trim() !== "") {
+            // Define o nome do usuário no elemento HTML
+            document.getElementById("userName").innerText = userName;
+        } else {
+            // Redireciona para a página de login caso o nome não esteja no localStorage
+            window.location.href = "login.html";
+        }
+
+        // Funções para redirecionamento
+        function irParaQuiz() {
+            window.location.href = "./quiz.html";
+        }
+
+        function irParaSimulador() {
+            window.location.href = "./simulador.html";
+        }
+
+        function irParaDashboard() {
+            window.location.href = "./dashboard/cards.html";
+        }
+    </script>
+</body>
+
+</html>

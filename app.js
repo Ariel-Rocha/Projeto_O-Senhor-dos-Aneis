@@ -27,6 +27,10 @@ app.use(express.static(path.join(__dirname, "public")));
 
 app.use(cors());
 
+app.get("/bem-vindo", (req, res) => {
+    res.sendFile(path.join(__dirname, "public", "bem-vindo.html"));
+  });
+  
 app.use("/usuarios", usuarioRouter);
 app.use("/avisos", avisosRouter);
 app.use("/medidas", medidasRouter);
