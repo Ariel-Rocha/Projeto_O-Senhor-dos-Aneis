@@ -2,26 +2,12 @@ const database = require("../../src/database/config");
 console.log("Database configurado:", database);
 
 function salvarRespostas(usuarioId, respostas) {
-    // Mapear as respostas e adicionar lógica para verificar se estão corretas
-    let valores = respostas.map((resposta) => {
-        return `( 
-            ${usuarioId}, 
-            ${resposta.perguntaId}, 
-            '${resposta.resposta}', 
-            (SELECT IF('${resposta.resposta}' = correta, 1, 0) FROM perguntas WHERE id = ${resposta.perguntaId})
-        )`;
-    }).join(", ");
+    let query = "INSERT INTO respostas_usuarios (usuario_id, pergunta_id, resposta, correta) VALUES ";
+    const valores = respostas.map(r => `(${usuarioId}, ${r.perguntaId}, '${r.resposta}', ${r.correta})`);
+  // const valores = respostas.map(r => `(${usuarioId}, ${r.perguntaId}, '${r.resposta}', ${0})`);
+    query += valores.join(", ") + ";";
 
-    const query = `
-        INSERT INTO respostas_usuarios (usuario_id, pergunta_id, resposta, correta) 
-        VALUES ${valores};
-    `;
-    respostas.forEach((resposta) => {
-        console.log("Resposta processada:", resposta);
-    });
-    
-    console.log("Query gerada para salvar respostas:", query);
-
+    console.log("Query gerada para salvar respostas:", query); 
     return database.executar(query);
 }
 

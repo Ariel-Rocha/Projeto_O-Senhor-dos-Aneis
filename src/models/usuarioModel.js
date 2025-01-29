@@ -108,13 +108,12 @@ function resultadoQuiz(usuarioId) {
 
 function salvarRespostas(usuarioId, respostas) {
     let query = "INSERT INTO respostas_usuarios (usuario_id, pergunta_id, resposta, correta) VALUES ";
-    const valores = respostas.map(r => `(${usuarioId}, ${r.perguntaId}, '${r.resposta}', ${r.correta})`);
+    const valores = respostas.map(r => `(${usuarioId}, ${r.perguntaId}, '${r.resposta}', ${0})`);
     query += valores.join(", ") + ";";
 
     console.log("Executando query para salvar respostas: \n" + query);
     return database.executar(query);
 }
-
 
 module.exports = {
     autenticar,

@@ -13,6 +13,9 @@ function salvarRespostas(req, res) {
             console.error("Erro ao salvar respostas:", erro);
             res.status(500).json({ mensagem: "Erro ao salvar respostas.", erro });
         });
+
+        console.log("Dados recebidos no backend:", req.body);
+
 }
 
 function resultadoQuiz(req, res) {
@@ -35,6 +38,7 @@ function resultadoQuiz(req, res) {
             res.status(500).json({ mensagem: "Erro ao obter resultado.", erro });
         });
 }
+
 
 
 module.exports = {
