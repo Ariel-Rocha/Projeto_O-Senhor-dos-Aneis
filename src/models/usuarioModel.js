@@ -19,10 +19,7 @@ function cadastrar(nome, email, senha) {
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
 }
-function cadastrarAlturas(fkusuario, altura, alturaHobbits) {
-  
-    
-   
+function cadastrarAlturas(fkusuario, altura, alturaHobbits) { 
     var instrucaoSql = `
         INSERT INTO alturas_usuarios (fk_usuario, altura, altura_hobbits) VALUES (${fkusuario}, ${altura}, ${alturaHobbits});
     `;
@@ -97,12 +94,36 @@ function verificarRespostas(respostas) {
     });
 }
 
+function resultadoQuiz(usuarioId) {
+    const query = `
+        SELECT 
+            COUNT(*) AS totalPerguntas,
+            SUM(CASE WHEN correta = resposta THEN 1 ELSE 0 END) AS acertos
+        FROM respostas_usuarios
+        WHERE usuario_id = ${usuarioId};
+    `;
+    console.log("Executando query para resultado do quiz: \n" + query);
+    return database.executar(query);
+}
+
+function salvarRespostas(usuarioId, respostas) {
+    let query = "INSERT INTO respostas_usuarios (usuario_id, pergunta_id, resposta, correta) VALUES ";
+    const valores = respostas.map(r => `(${usuarioId}, ${r.perguntaId}, '${r.resposta}', ${r.correta})`);
+    query += valores.join(", ") + ";";
+
+    console.log("Executando query para salvar respostas: \n" + query);
+    return database.executar(query);
+}
+
+
 module.exports = {
     autenticar,
     cadastrar,
     cadastrarAlturas,
     listarAlturas,
     listarRankingAlturas,
-    obterPerguntas, // Certifique-se de exportar estas funções
+    obterPerguntas, 
     verificarRespostas,
+    resultadoQuiz,
+    salvarRespostas,
 };

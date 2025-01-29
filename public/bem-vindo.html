@@ -6,12 +6,61 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bem-vindo</title>
     <link rel="stylesheet" href="./css/estilo.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f0f0f0;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            font-size: 2.5em;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        p {
+            font-size: 1.2em;
+            color: #555;
+            margin-bottom: 30px;
+        }
+
+        .buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .buttons button {
+            background-color: #ffcc00;
+            border: none;
+            padding: 15px 25px;
+            font-size: 1.1em;
+            font-weight: bold;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .buttons button:hover {
+            background-color: #e6b800;
+        }
+    </style>
 </head>
 
 <body>
     <div class="container">
         <h1>Bem-vindo, <span id="userName"></span>!</h1>
-        <p>Escolha uma das opções abaixo:</p>
+        <p>Siga com o conteúdo exclusivo:</p>
         <div class="buttons">
             <button onclick="irParaQuiz()">Quiz</button>
             <button onclick="irParaSimulador()">Simulador (Calculadora Hobbit)</button>
@@ -33,7 +82,7 @@
         }
 
         // Funções para redirecionamento
-        function irParaQuiz() {
+        function irParaQuiz() {''
             window.location.href = "./quiz.html";
         }
 
@@ -42,7 +91,7 @@
         }
 
         function irParaDashboard() {
-            window.location.href = "./dashboard/cards.html";
+            window.location.href = "./dashboard/dashboard1.html";
         }
     </script>
 </body>

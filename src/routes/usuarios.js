@@ -35,6 +35,14 @@ router.post("/verificarRespostas", (req, res) => {
   usuarioController.verificarRespostas(req, res);
 });
 
+router.post("/resultadoQuiz", (req,res)=> {
+  usuarioController.resultadoQuiz(req,res);
+
+}); 
+
+router.post("/salvarRespostas", (req,res)=> {
+  usuarioController.salvarRespostas(req,res);
+});
 
 // Exporta o router
 module.exports = router;

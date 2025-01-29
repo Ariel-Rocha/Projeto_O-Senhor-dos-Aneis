@@ -451,3 +451,17 @@ canvas {
     padding: 8px; /* Ajusta o espaçamento interno */
   }
 }
+/* Esconde ou exibe seções */
+.display-none {
+  display: none;
+}
+
+.display-block {
+  display: block;
+}
+
+/* Estilo para o gráfico */
+canvas {
+  max-width: 100%;
+  height: auto;
+}

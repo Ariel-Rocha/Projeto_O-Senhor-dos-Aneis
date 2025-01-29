@@ -152,6 +152,55 @@ function verificarRespostas(req, res) {
             res.status(500).json({ mensagem: "Erro ao verificar respostas", erro });
         });
 }
+function resultadoQuiz(req, res) {
+    const usuarioId = req.body.usuarioId;
+
+    if (!usuarioId) {
+        return res.status(400).json({ mensagem: "O ID do usuário não foi fornecido." });
+    }
+
+    usuarioModel.resultadoQuiz(usuarioId)
+        .then((resultado) => {
+            if (resultado.length > 0) {
+                const totalPerguntas = resultado[0].totalPerguntas || 0;
+                const acertos = resultado[0].acertos || 0;
+                const porcentagem = totalPerguntas > 0 ? ((acertos / totalPerguntas) * 100).toFixed(2) : 0;
+
+                res.status(200).json({
+                    totalPerguntas,
+                    acertos,
+                    erros: totalPerguntas - acertos,
+                    porcentagem // Incluímos a porcentagem na resposta
+                });
+            } else {
+                res.status(404).json({ mensagem: "Nenhum resultado encontrado." });
+            }
+        })
+        .catch((erro) => {
+            console.error("Erro ao obter resultado do quiz:", erro);
+            res.status(500).json({ mensagem: "Erro ao obter resultado do quiz.", erro });
+        });
+}
+
+
+function salvarRespostas(req, res) {
+    const usuarioId = req.body.usuarioId; // ID do usuário enviado pelo frontend
+    const respostas = req.body.respostas; // Respostas enviadas pelo frontend
+
+    if (!usuarioId || !respostas || respostas.length === 0) {
+        return res.status(400).json({ mensagem: "Dados insuficientes para salvar as respostas." });
+    }
+
+    usuarioModel.salvarRespostas(usuarioId, respostas)
+        .then(() => {
+            res.status(200).json({ mensagem: "Respostas salvas com sucesso." });
+        })
+        .catch((erro) => {
+            console.error("Erro ao salvar respostas:", erro);
+            res.status(500).json({ mensagem: "Erro ao salvar respostas.", erro });
+        });
+}
+
 
 module.exports = {
     cadastrar,
@@ -161,4 +210,6 @@ module.exports = {
     listarRanking,
     obterPerguntas,
     verificarRespostas,
+    resultadoQuiz,
+    salvarRespostas,
 };

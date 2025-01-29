@@ -1,10 +1,3 @@
--- Arquivo de apoio, caso você queira criar tabelas como as aqui criadas para a API funcionar.
--- Você precisa executar os comandos no banco de dados para criar as tabelas,
--- ter este arquivo aqui não significa que a tabela em seu BD estará como abaixo!
-
-/*
-comandos para mysql server
-*/
 CREATE DATABASE projeto_individual;
 USE projeto_individual;
 
@@ -47,3 +40,7 @@ VALUES
 ('Quem é o portador do Um Anel em grande parte da história?', 'Aragorn', 'Frodo', 'Legolas', 'Sam', 'b'),
 ('Quem é o verdadeiro herdeiro do trono de Gondor?', 'Boromir', 'Faramir', 'Aragorn', 'Denethor', 'c'),
 ('Qual o nome do mago branco?', 'Saruman', 'Gandalf', 'Radagast', 'Tom Bombadil', 'b');
+
+select * from perguntas;
+
+

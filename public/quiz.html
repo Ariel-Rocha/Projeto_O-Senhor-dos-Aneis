@@ -1,120 +1,245 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Quiz - O Senhor dos Anéis</title>
+    <style>
+        /* Mesmo estilo anterior */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+        }
+
+        .logonavbar {
+            display: flex;
+            align-items: center;
+            background-color: #333;
+            color: #fff;
+            padding: 10px 20px;
+        }
+
+        .logonavbar img {
+            height: 40px;
+            margin-right: 10px;
+        }
+
+        .itens {
+            display: flex;
+            justify-content: center;
+            padding: 10px;
+            background-color: #444;
+        }
+
+        .itens a {
+            margin: 0 10px;
+            color: white;
+            text-decoration: none;
+        }
+
+        .itens a:hover {
+            text-decoration: underline;
+        }
+
+        .calculadorafixa {
+            margin: 30px auto;
+            padding: 20px;
+            max-width: 800px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        .inputsimc {
+            margin-top: 20px;
+        }
+
+        .inputsimc span {
+            display: block;
+            margin: 15px 0 5px;
+            font-weight: bold;
+        }
+
+        select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .botaocadastro {
+            display: block;
+            width: 100%;
+            max-width: 200px;
+            margin: 20px auto;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            text-align: center;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .botaocadastro:hover {
+            background-color: #45a049;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 30px;
+            padding: 10px 0;
+            background-color: #333;
+            color: white;
+        }
+
+        .footer img {
+            width: 80px;
+            margin-bottom: 5px;
+        }
+    </style>
 </head>
+
 <body>
-    <h1>Quiz - O Senhor dos Anéis</h1>
+    <!-- Navbar -->
+    <div class="logonavbar">
+        <img src="./assets/icon/logo.png" alt="Logo" />
+        <span>Senhor dos Anéis - Quiz</span>
+    </div>
 
-    <!-- Div para o Quiz -->
-    <div id="quiz"></div>
+    <!-- Navegação -->
+    <div class="itens">
+        <a href="./home.html"><span>Home</span></a>
+        <a href="./quiz.html"><span>Quiz</span></a>
+        <a href="./ranking.html"><span>Ranking</span></a>
+    </div>
 
-    <button onclick="finalizarQuiz()">Finalizar Quiz</button>
-    <p id="resultado" style="margin-top: 20px; font-size: 18px;"></p>
+    <!-- Conteúdo principal -->
+    <div class="calculadorafixa">
+        <h1>Quiz</h1>
+        <span>Responda às perguntas abaixo sobre O Senhor dos Anéis:</span>
+        <div class="inputsimc">
+            <!-- Perguntas -->
+            <span>1. Quem criou o Um Anel?</span>
+            <select id="q1">
+                <option value="#">Selecione</option>
+                <option value="a">Sauron</option>
+                <option value="b">Gandalf</option>
+                <option value="c">Frodo</option>
+                <option value="d">Elrond</option>
+            </select>
+
+            <span>2. Quantos membros compõem a Sociedade do Anel?</span>
+            <select id="q2">
+                <option value="#">Selecione</option>
+                <option value="a">7</option>
+                <option value="b">8</option>
+                <option value="c">9</option>
+                <option value="d">10</option>
+            </select>
+
+            <span>3. Quem é o portador do Um Anel em grande parte da história?</span>
+            <select id="q3">
+                <option value="#">Selecione</option>
+                <option value="a">Aragorn</option>
+                <option value="b">Frodo</option>
+                <option value="c">Legolas</option>
+                <option value="d">Sam</option>
+            </select>
+
+            <span>4. Quem é o verdadeiro herdeiro do trono de Gondor?</span>
+            <select id="q4">
+                <option value="#">Selecione</option>
+                <option value="a">Boromir</option>
+                <option value="b">Faramir</option>
+                <option value="c">Aragorn</option>
+                <option value="d">Denethor</option>
+            </select>
+
+            <span>5. Qual o nome do mago branco?</span>
+            <select id="q5">
+                <option value="#">Selecione</option>
+                <option value="a">Saruman</option>
+                <option value="b">Gandalf</option>
+                <option value="c">Radagast</option>
+                <option value="d">Tom Bombadil</option>
+            </select>
+
+            <!-- Botão para enviar respostas -->
+            <button class="botaocadastro" onclick="enviarRespostas()">Enviar Respostas</button>
+        </div>
+    </div>
+
+    <!-- Rodapé -->
+    <div class="footer">
+        <img src="./assets/icon/logo.png" alt="Logo" />
+        <span>© 2025 Senhor dos Anéis Quiz - Todos os direitos reservados</span>
+    </div>
 
     <script>
-        // Array de perguntas e respostas
-        var perguntas = [
-            {
-                pergunta: "Qual é o nome do mago cinzento que ajuda Frodo?",
-                alternativas: { a: "Gandalf", b: "Saruman", c: "Radagast", d: "Sauron" },
-                correta: "a"
-            },
-            {
-                pergunta: "Qual é o nome do lugar onde o Um Anel foi forjado?",
-                alternativas: { a: "Mordor", b: "Valfenda", c: "Gondor", d: "Rohan" },
-                correta: "a"
-            },
-            {
-                pergunta: "Quem destrói o Um Anel?",
-                alternativas: { a: "Frodo", b: "Gollum", c: "Sam", d: "Aragorn" },
-                correta: "b"
-            },
-            {
-                pergunta: "Qual é o nome do povo de Legolas?",
-                alternativas: { a: "Hobbits", b: "Elfos", c: "Anões", d: "Homens" },
-                correta: "b"
-            },
-            {
-                pergunta: "Quem é o rei de Gondor?",
-                alternativas: { a: "Boromir", b: "Aragorn", c: "Faramir", d: "Théoden" },
-                correta: "b"
-            },
-            {
-                pergunta: "Qual é o nome da espada de Aragorn?",
-                alternativas: { a: "Narsil", b: "Andúril", c: "Glamdring", d: "Sting" },
-                correta: "b"
-            },
-            {
-                pergunta: "Qual é o nome da criatura que acompanha Frodo?",
-                alternativas: { a: "Sméagol", b: "Gollum", c: "Shelob", d: "Bilbo" },
-                correta: "b"
-            },
-            {
-                pergunta: "Quem é o Senhor do Escuro?",
-                alternativas: { a: "Saruman", b: "Sauron", c: "Melkor", d: "Thranduil" },
-                correta: "b"
-            },
-            {
-                pergunta: "Qual é o nome do reino de Théoden?",
-                alternativas: { a: "Rohan", b: "Mordor", c: "Gondor", d: "Valfenda" },
-                correta: "a"
-            },
-            {
-                pergunta: "Quantos membros há na Sociedade do Anel?",
-                alternativas: { a: "7", b: "9", c: "8", d: "10" },
-                correta: "b"
+        // Função para enviar as respostas do quiz
+        function enviarRespostas() {
+            // Array para armazenar as respostas
+            var respostas = [];
+
+            // Coletar as respostas dos selects
+            var q1 = document.getElementById("q1").value;
+            var q2 = document.getElementById("q2").value;
+            var q3 = document.getElementById("q3").value;
+            var q4 = document.getElementById("q4").value;
+            var q5 = document.getElementById("q5").value;
+
+            // Verificar se todas as perguntas foram respondidas
+            if (q1 === "#" || q2 === "#" || q3 === "#" || q4 === "#" || q5 === "#") {
+                alert("Por favor, responda todas as perguntas!");
+                return;
             }
-        ];
 
-        // Referência para a div do Quiz
-        var quizDiv = document.getElementById("quiz");
+            // Adicionar as respostas ao array
+            respostas.push({ perguntaId: 1, resposta: q1 });
+            respostas.push({ perguntaId: 2, resposta: q2 });
+            respostas.push({ perguntaId: 3, resposta: q3 });
+            respostas.push({ perguntaId: 4, resposta: q4 });
+            respostas.push({ perguntaId: 5, resposta: q5 });
 
-        // Construção do Quiz sem usar appendChild ou forEach
-        var quizHtml = "";
-        for (var index = 0; index < perguntas.length; index++) {
-            var q = perguntas[index];
+            // ID do usuário (exemplo simples)
+            var usuarioId = sessionStorage.getItem("ID_USUARIO");
 
-            // Adicionando perguntas e alternativas ao HTML
-            quizHtml += `
-                <p>${index + 1}. ${q.pergunta}</p>
-                <label><input type="radio" name="pergunta${index}" value="a"> ${q.alternativas.a}</label><br>
-                <label><input type="radio" name="pergunta${index}" value="b"> ${q.alternativas.b}</label><br>
-                <label><input type="radio" name="pergunta${index}" value="c"> ${q.alternativas.c}</label><br>
-                <label><input type="radio" name="pergunta${index}" value="d"> ${q.alternativas.d}</label><br>
-            `;
-        }
-
-        // Insere o conteúdo completo na div
-        quizDiv.innerHTML = quizHtml;
-
-        // Finaliza o Quiz
-        function finalizarQuiz() {
-            var pontuacao = 0;
-
-            // Verifica as respostas
-            for (var index = 0; index < perguntas.length; index++) {
-                var radios = document.getElementsByName("pergunta" + index);
-                var respostaSelecionada = null;
-
-                for (var i = 0; i < radios.length; i++) {
-                    if (radios[i].checked) {
-                        respostaSelecionada = radios[i].value;
-                        break;
+            // Logar os dados que serão enviados
+            console.log("Dados enviados pelo fetch:");
+            console.log({ usuarioId, respostas });
+            // Enviar as respostas para o backend
+            fetch("http://localhost:3333/usuarios/salvarRespostas", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({ usuarioId: usuarioId, respostas: respostas }),
+            })
+                .then(function (response) {
+                    if (response.ok) {
+                        alert("Respostas enviadas com sucesso!");
+                        window.location.href = "./dashboard1.html"; // Redireciona para a página de resultados
+                    } else {
+                        alert("Erro ao enviar as respostas.");
                     }
-                }
-
-                if (respostaSelecionada === perguntas[index].correta) {
-                    pontuacao++;
-                }
-            }
-
-            // Exibe o resultado
-            var resultado = document.getElementById("resultado");
-            resultado.innerText = `Você acertou ${pontuacao} de ${perguntas.length} perguntas!`;
+                })
+                .catch(function (erro) {
+                    console.error("Erro:", erro);
+                    alert("Não foi possível enviar as respostas.");
+                });
         }
     </script>
+
 </body>
+
 </html>

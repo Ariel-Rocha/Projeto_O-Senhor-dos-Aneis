@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hobbit | Dashboard</title>
+
+    <link rel="icon" href="./assets/icon/logo.png" />
+    <link rel="stylesheet" href="./../css/dashboards.css">
+    <link rel="stylesheet" href="./../css/estilo.css" />
+    <script src="../js/sessao.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <style>
+        .display-none {
+            display: none;
+        }
+
+        .secao {
+            padding: 20px;
+        }
+
+        .chart-box {
+            max-width: 600px;
+            margin: 20px auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        table th,
+        table td {
+            text-align: center;
+            padding: 10px;
+            border: 1px solid #ccc;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="janela">
+        <!-- Menu lateral -->
+        <div class="header-left dash-header">
+            <h1>Hobbit House</h1>
+            <div class="hello">
+                <h3>Olá, <span id="b_usuario">usuário</span>!</h3>
+            </div>
+
+            <!-- Botões para alternar as exibições -->
+            <div class="btn-nav" onclick="exibirSecao('ranking')">
+                <h3>Ranking</h3>
+            </div>
+            <div class="btn-nav" onclick="exibirSecao('resultadoQuiz')">
+                <h3>Resultado do Quiz</h3>
+            </div>
+            <div class="btn-nav" onclick="exibirSecao('graficoAlturas')">
+                <h3>Gráfico</h3>
+            </div>
+            <div class="btn-logout" onclick="limparSessao()">
+                <h3>Sair</h3>
+            </div>
+        </div>
+
+        <!-- Área de exibição dinâmica -->
+        <div class="dash">
+            <!-- Ranking -->
+            <div id="ranking" class="secao display-none">
+                <h2>Ranking de Alturas</h2>
+                <table border="1" id="tabelaRanking">
+                    <thead>
+                        <tr>
+                            <th>Posição</th>
+                            <th>Nome</th>
+                            <th>Altura (Hobbits)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Dados do ranking serão exibidos aqui -->
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Resultado do Quiz -->
+            <div id="resultadoQuiz" class="secao display-none">
+                <h2>Resultado do Quiz</h2>
+                <p id="resultadoQuizTexto">Aguarde...</p>
+            </div>
+
+            <!-- Gráfico de Alturas -->
+            <div id="graficoAlturas" class="secao display-none">
+                <h2>Gráfico de Alturas</h2>
+                <div class="chart-box">
+                    <canvas id="graficoAlturasCanvas"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="./../js/dashboardteste.js"></script>
+</body>
+
+</html>
