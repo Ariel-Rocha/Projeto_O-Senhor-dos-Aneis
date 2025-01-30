@@ -128,7 +128,7 @@ function listarRanking(req, res) {
             res.status(500).json(erro.sqlMessage);
         });
 }
-
+/*
 function obterPerguntas(req, res) {
     usuarioModel.obterPerguntas() // Alterado para usuarioModel
         .then((perguntas) => {
@@ -182,7 +182,7 @@ function resultadoQuiz(req, res) {
         });
 }
 
-
+/*
 function salvarRespostas(req, res) {
     const usuarioId = req.body.usuarioId; // ID do usuário enviado pelo frontend
     const respostas = req.body.respostas; // Respostas enviadas pelo frontend
@@ -201,15 +201,15 @@ function salvarRespostas(req, res) {
         });
 }
 
-
+*/
 module.exports = {
     cadastrar,
     autenticar,
     cadastrarAlturas,
     listarAlturas,
     listarRanking,
-    obterPerguntas,
-    verificarRespostas,
-    resultadoQuiz,
-    salvarRespostas,
+   // obterPerguntas,
+  //  verificarRespostas,
+   // resultadoQuiz,
+  //salvarRespostas,
 };

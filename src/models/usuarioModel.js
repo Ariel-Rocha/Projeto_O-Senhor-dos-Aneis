@@ -69,7 +69,7 @@ function listarRankingAlturas() {
     // Retornei o resultado da execução da consulta no banco de dados
     return database.executar(query);
 }
-
+/*
 function obterPerguntas() {
     var query = `
         SELECT id, texto, alternativa_a, alternativa_b, alternativa_c, alternativa_d, correta
@@ -105,7 +105,7 @@ function resultadoQuiz(usuarioId) {
     console.log("Executando query para resultado do quiz: \n" + query);
     return database.executar(query);
 }
-
+/*
 function salvarRespostas(usuarioId, respostas) {
     let query = "INSERT INTO respostas_usuarios (usuario_id, pergunta_id, resposta, correta) VALUES ";
     const valores = respostas.map(r => `(${usuarioId}, ${r.perguntaId}, '${r.resposta}', ${0})`);
@@ -114,15 +114,15 @@ function salvarRespostas(usuarioId, respostas) {
     console.log("Executando query para salvar respostas: \n" + query);
     return database.executar(query);
 }
-
+*/
 module.exports = {
     autenticar,
     cadastrar,
     cadastrarAlturas,
     listarAlturas,
     listarRankingAlturas,
-    obterPerguntas, 
-    verificarRespostas,
-    resultadoQuiz,
-    salvarRespostas,
+    //obterPerguntas, 
+   // verificarRespostas,
+  //  resultadoQuiz,
+  //  salvarRespostas,
 };

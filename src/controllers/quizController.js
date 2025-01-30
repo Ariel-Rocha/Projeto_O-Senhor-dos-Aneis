@@ -18,6 +18,7 @@ function salvarRespostas(req, res) {
 
 }
 
+
 function resultadoQuiz(req, res) {
     const { usuarioId } = req.params;
 
@@ -39,9 +40,21 @@ function resultadoQuiz(req, res) {
         });
 }
 
+function obterResultados(req, res) {
+    quizModel.obterResultados()
+        .then(resultados => {
+            res.status(200).json(resultados); // Retorna os resultados como JSON
+        })
+        .catch(erro => {
+            console.error("Erro ao obter resultados:", erro);
+            res.status(500).json({ mensagem: "Erro ao obter resultados", erro });
+        });
+}
+
 
 
 module.exports = {
     salvarRespostas,
-    resultadoQuiz
+    resultadoQuiz,
+    obterResultados,
 };

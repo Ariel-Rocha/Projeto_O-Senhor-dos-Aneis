@@ -26,23 +26,25 @@ router.get("/rankingAlturas", (req, res) => {
   usuarioController.listarRanking(req, res);
 });
 
+
+/*
 // Rotas do quiz (movidas para `usuarioController`)
-router.get("/obterPerguntas", (req, res) => {
-  usuarioController.obterPerguntas(req, res);
-});
+// router.get("/obterPerguntas", (req, res) => {
+//  usuarioController.obterPerguntas(req, res);
+//});
 
-router.post("/verificarRespostas", (req, res) => {
-  usuarioController.verificarRespostas(req, res);
-});
+// router.post("/verificarRespostas", (req, res) => {
+ //  usuarioController.verificarRespostas(req, res);
+// });
 
-router.post("/resultadoQuiz", (req,res)=> {
+// router.post("/resultadoQuiz", (req,res)=> {
   usuarioController.resultadoQuiz(req,res);
 
-}); 
+// }); 
 
-router.post("/salvarRespostas", (req,res)=> {
-  usuarioController.salvarRespostas(req,res);
-});
-
+//router.post("/salvarRespostas", (req,res)=> {
+ // usuarioController.salvarRespostas(req,res);
+//});
+*/
 // Exporta o router
 module.exports = router;

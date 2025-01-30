@@ -32,7 +32,29 @@ function obterResultado(usuarioId) {
     });
 }
 
+function obterResultados() {
+    const query = `
+        SELECT 
+            u.nome, 
+            ROUND((SUM(CASE WHEN ru.correta = 1 THEN 1 ELSE 0 END) / COUNT(*)) * 100, 2) AS percentual_acertos
+        FROM 
+            usuario u
+        JOIN 
+            respostas_usuarios ru 
+        ON 
+            u.id = ru.usuario_id
+        GROUP BY 
+            u.id, u.nome
+        ORDER BY 
+            percentual_acertos DESC;
+    `;
+
+    console.log("Executando query para obter resultados gerais:\n", query);
+    return database.executar(query);
+}
+
 module.exports = {
     salvarRespostas,
-    obterResultado
+    obterResultado,
+    obterResultados,
 };

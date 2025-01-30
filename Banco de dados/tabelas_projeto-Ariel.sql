@@ -42,5 +42,15 @@ VALUES
 ('Qual o nome do mago branco?', 'Saruman', 'Gandalf', 'Radagast', 'Tom Bombadil', 'b');
 
 select * from perguntas;
+SELECT * FROM usuario;
 
+INSERT INTO usuario (nome, email, senha) VALUES ('Teste', 'teste@teste.com', '123456');
 
+SELECT * FROM respostas_usuarios;
+
+SELECT IF('d' = correta, 1, 0) AS correta FROM perguntas WHERE id = 2;
+
+SELECT id, texto, correta FROM perguntas;
+
+SELECT IF('a' = correta, 1, 0) AS correta FROM perguntas WHERE id = 1;
+SELECT * FROM respostas_usuarios;
