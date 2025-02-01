@@ -1,82 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard - O Senhor dos Anéis</title>
-    <link rel="stylesheet" href="../styles.css"> <!-- Substitua pelo caminho real se houver -->
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #1b1b1b;
-            color: white;
-            margin: 0;
-            display: flex;
-            flex-direction: row;
-        }
 
-        .sidebar {
-            width: 20%;
-            background-color: #2c2c2c;
-            height: 100vh;
-            padding: 20px;
-            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.5);
-        }
+    <script src="../js/sessao.js"></script>
+    <link rel="stylesheet" href="./../dashboard/darshboard1.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-        .sidebar h1 {
-            text-align: center;
-            margin-bottom: 30px;
-            color: #f4c542;
-        }
 
-        .sidebar button {
-            width: 100%;
-            padding: 15px;
-            margin-bottom: 15px;
-            border: none;
-            border-radius: 5px;
-            font-size: 16px;
-            cursor: pointer;
-            background-color: #444;
-            color: white;
-        }
-
-        .sidebar button:hover {
-            background-color: #f4c542;
-            color: black;
-        }
-
-        .content {
-            width: 80%;
-            padding: 20px;
-        }
-
-        .result-section {
-            display: none;
-            background-color: #2c2c2c;
-            border-radius: 10px;
-            padding: 20px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-        }
-
-        .result-section h2 {
-            color: #f4c542;
-            margin-bottom: 20px;
-        }
-
-        .result-section ul {
-            list-style: none;
-            padding: 0;
-        }
-
-        .result-section ul li {
-            background-color: #444;
-            margin-bottom: 10px;
-            padding: 10px;
-            border-radius: 5px;
-        }
-    </style>
 </head>
+
 <body>
 
     <div class="sidebar">
@@ -93,11 +29,38 @@
         </div>
     </div>
 
+    <div id="rankingAlturas" style="display: none;">
+        <h2>Ranking de Alturas</h2>
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>Nome</th>
+                    <th>Altura (Hobbits)</th>
+                </tr>
+            </thead>
+            <tbody id="rankingTable"></tbody>
+        </table>
+    </div>
+
+    <div id="grafico" class="result-section" style="display: none;">
+        <h2>Gráfico de Desempenho</h2>
+        <canvas id="graficoCanvas"></canvas> <!-- Canvas onde o gráfico será exibido -->
+    </div>
+
+
     <script>
         const btnQuiz = document.getElementById("btnQuiz");
         const resultadosQuiz = document.getElementById("resultadosQuiz");
         const listaResultados = document.getElementById("listaResultados");
+        const btnRanking = document.getElementById("btnRanking");
+        const rankingAlturas = document.getElementById("rankingAlturas");
+        const rankingTable = document.getElementById("rankingTable");
 
+        // Função para esconder todas as seções
+        function esconderTudo() {
+            resultadosQuiz.style.display = "none";
+            rankingAlturas.style.display = "none";
+        }
         // Ao clicar no botão "Resultado do Quiz %"
         btnQuiz.addEventListener("click", () => {
             resultadosQuiz.style.display = "block";
@@ -118,7 +81,138 @@
                     listaResultados.innerHTML = "<li>Erro ao carregar resultados.</li>";
                 });
         });
+
+
+        //30-01-25
+        // Quando clicar no botão "Ranking", mostrará a tabela de conversão de ranking de 
+        // alturas
+        btnRanking.addEventListener("click", () => {
+            // Adicionei um evento ao botão "Ranking Alturas" que será ativado quando ele for clicado.
+
+            rankingAlturas.style.display = "block";
+            // Quando o botão for clicado, eu mostro a seção do ranking de alturas.
+
+            resultadosQuiz.style.display = "none";
+            // Ao mesmo tempo, escondo a seção de resultados do quiz para que só o ranking apareça.
+
+            fetch("http://localhost:3333/usuarios/rankingAlturas")
+                // Aqui eu faço uma requisição para o backend, para o endpoint que retorna os dados do ranking de alturas.
+                // O `fetch` é usado para buscar esses dados.
+
+                .then(response => response.json())
+                // Quando a requisição for concluída com sucesso, converto a resposta do backend para JSON.
+                // O JSON é o formato de dados que vem do servidor.
+
+                .then(data => {
+                    rankingTable.innerHTML = "";
+                    // Antes de exibir os dados, limpo qualquer conteúdo antigo na tabela para evitar duplicação.
+
+                    data.forEach(usuario => {
+                        // Para cada usuário nos dados recebidos do backend, eu vou criar uma nova linha na tabela.
+
+                        const row = document.createElement("tr");
+                        // Crio um elemento `<tr>` que representa uma linha da tabela.
+
+                        row.innerHTML = `<td>${usuario.nome}</td><td>${usuario.altura_hobbits}</td>`;
+                        // Preencho essa linha com duas células `<td>`:
+                        // A primeira célula exibe o nome do usuário.
+                        // A segunda célula exibe a altura do usuário.
+
+                        rankingTable.appendChild(row);
+                        // Finalmente, adiciono essa linha completa à tabela de ranking.
+                    });
+                })
+
+                .catch(error => {
+                    console.error("Erro ao obter o ranking:", error);
+                    // Se houver algum problema (como um erro na conexão ou no backend), eu exibo o erro no console.
+
+                    rankingTable.innerHTML = "<tr><td colspan='2'>Erro ao carregar ranking.</td></tr>";
+                    // E, no lugar da tabela, mostro uma mensagem de erro para o usuário.
+                    // `colspan='2'` faz com que a mensagem ocupe as duas colunas da tabela. (visto na internet - https://www.youtube.com/watch?v=O0g9DiHMeoE)
+                });
+        });
+
+
+
+        //31-01-2025
+        // Variável global para armazenar o gráfico
+        var grafico = null; // Variável global para guardar o gráfico, se ele existir.
+
+        // Função para exibir o gráfico de alturas.
+        function mostrarGrafico() {
+            // Primeiro, faço uma requisição ao servidor para obter os dados.
+            fetch("http://localhost:3333/usuarios/rankingAlturas")
+                .then(function (response) {
+                    return response.json(); // Transformo a resposta em um objeto JSON.
+                })
+                .then(function (data) {
+                    // Crio listas vazias para armazenar os nomes e as alturas.
+                    var nomes = [];
+                    var alturas = [];
+
+                    // Uso um loop `for` para percorrer os dados recebidos.
+                    for (var i = 0; i < data.length; i++) {
+                        nomes.push(data[i].nome); // Adiciono o nome do usuário na lista de nomes.
+                        alturas.push(data[i].altura_hobbits); // Adiciono a altura do usuário na lista de alturas.
+                    }
+
+                    // Configuro os dados e aparência do gráfico.
+                    var chartData = {
+                        labels: nomes,
+                        datasets: [{
+                            label: 'Alturas (em Hobbits)',
+                            data: alturas,
+                            backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                            borderColor: 'rgba(75, 192, 192, 1)',
+                            borderWidth: 1
+                        }]
+                    };
+
+                    var chartConfig = {
+                        type: 'bar',
+                        data: chartData,
+                        options: {
+                            responsive: true,
+                            plugins: {
+                                legend: { display: true },
+                                title: { display: true, text: 'Ranking de Alturas dos Usuários' }
+                            }
+                        }
+                    };
+
+                    // Se já existir um gráfico, destruo antes de criar um novo.
+                    if (grafico) {
+                        grafico.destroy();
+                    }
+
+                    // Agora, crio o gráfico com as configurações.
+                    grafico = new Chart(
+                        document.getElementById("graficoCanvas"),
+                        chartConfig
+                    );
+                })
+                .catch(function (error) {
+                    console.error("Erro ao carregar dados do gráfico:", error);
+                    alert("Não foi possível carregar os dados para o gráfico.");
+                });
+        }
+
+        // Função para esconder todas as seções antes de exibir uma nova.
+        function esconderTudo() {
+            document.getElementById("grafico").style.display = "none"; // Escondo o gráfico.
+        }
+
+        // Adiciono um evento ao botão de exibir gráfico.
+        document.getElementById("btnGrafico").addEventListener("click", function () {
+            esconderTudo(); // Primeiro escondo todas as seções.
+            document.getElementById("grafico").style.display = "block"; // Exibo a seção do gráfico.
+            mostrarGrafico(); // Carrego e mostro o gráfico.
+        });
+
+
     </script>
 
 </body>
+
 </html>

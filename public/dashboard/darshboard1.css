@@ -1,0 +1,104 @@
+@font-face {
+    font-family: 'Ringbearer';
+    src: url('../public/assets/Fonte-Ringbearer/RINGM___.TTF') format('truetype');
+}
+
+body {
+    font-family: 'Ringbearer', serif;
+    margin: 0;
+    display: flex;
+    flex-direction: row;
+    height: 100vh;
+    overflow: hidden;
+    background: url('../assets/imagens/Gandalf-dashboard1.png') no-repeat center center;
+    background-size: cover;
+}
+
+.sidebar {
+    width: 20%;
+    background-color: #032e16;
+    height: 100vh;
+    padding: 20px;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.5);
+}
+
+.sidebar h1 {
+    text-align: center;
+    margin-bottom: 30px;
+    color: #f4c542;
+}
+
+.sidebar button {
+    width: 100%;
+    padding: 15px;
+    margin-bottom: 15px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    background-color: #444444;
+    color: white;
+}
+
+.sidebar button:hover {
+    background-color: #f4c542;
+    color: black;
+}
+
+.content {
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center; /* Ajusta para o centro horizontalmente */
+    gap: 20px;
+    padding: 20px;
+}
+
+.result-section,
+#rankingAlturas {
+    width: 60%; /* Aumenta a largura para centralizar melhor */
+    max-width: 700px; /* Limita a largura para não exagerar */
+    background-color: rgba(44, 44, 44, 0.9);
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    overflow-y: auto;
+    display: none; /* Por padrão, ambos escondidos */
+}
+
+.result-section h2,
+#rankingAlturas h2 {
+    color: #f4c542;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.result-section ul,
+#rankingAlturas table {
+    width: 100%;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.result-section ul li,
+#rankingAlturas table th,
+#rankingAlturas table td {
+    background-color: #444;
+    margin-bottom: 10px;
+    padding: 10px;
+    border-radius: 5px;
+    color: white;
+    text-align: center;
+}
+
+#rankingAlturas table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+#rankingAlturas table th,
+#rankingAlturas table td {
+    border: 1px solid #fff;
+}

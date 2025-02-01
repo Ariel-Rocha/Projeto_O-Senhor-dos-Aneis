@@ -11,9 +11,8 @@
     <script src="./js/sessao.js"></script>
 
     <link rel="stylesheet" href="./css/estilo.css">
-    <link rel="icon" href="./assets/icon/logo.png"/>
+    <link rel="icon" href="./assets/icon/logo.png" />
     <link rel="preconnect" href="https://fonts.gstatic.com">
-
 </head>
 
 <body>
@@ -35,132 +34,77 @@
     <main class="simulador">
         <div class="container">
             <h1>Calculadora de Altura Hobbit</h1>
-            <p>Insira várias alturas (em metros) para converter para a escala Hobbit:</p>
+            <p>Insira a altura (em metros) para converter para a escala Hobbit:</p>
 
             <!-- Entrada de altura -->
             <input type="number" id="ipt_altura" placeholder="Digite uma altura em metros" step="0.01">
-            <button onclick="adicionarAltura()">Adicionar Altura</button>
-            <button onclick="calcularAlturas()">Calcular Alturas</button>
-            <button onclick="adicionar()">Cadastrar Alturas</button>
-
+            <button onclick="calcularAltura()">Converter para Hobbit</button>
 
             <!-- Div para mensagens -->
             <div id="div_mensagem"></div>
-            <!-- Lista de alturas -->
-            <h2>Alturas Adicionadas</h2>
-            <ul id="listaAlturas"></ul>
 
-            <!-- Resultados -->
-            <h2>Resultados</h2>
-            <ul id="resultado"></ul>
-
-            <h2>O Mais Alto e o Mais Baixo: </h2>
-            <div id="vencedores"></div>
-
+            <!-- Botão para redirecionar à Dashboard -->
+            <div id="btn_dashboard" style="display: none; margin-top: 20px;">
+                <button onclick="irParaDashboard()">Ir para a Dashboard</button>
+            </div>
         </div>
     </main>
 
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
-            <h4>Hobbit House. Todos os direitos reservados. &hearts; Ariel Rocha| SPTech &copy; 2024</h4>
+            <h4>Hobbit House. Todos os direitos reservados. &hearts; Ariel Rocha | SPTech &copy; 2024</h4>
             <span class="version">v1.0.0</span>
         </div>
     </footer>
 
-    <body>
+    <script>
+        // Elementos do HTML
+        const campoAltura = document.getElementById("ipt_altura");
+        const divMensagem = document.getElementById("div_mensagem");
+        const btnDashboard = document.getElementById("btn_dashboard");
 
-        <script>
-            // Referências globais aos elementos HTML
-            var campoAltura = document.getElementById('ipt_altura');
-            var divMensagem = document.getElementById('div_mensagem');
-            var listaAlturas = document.getElementById('listaAlturas');
-            var listaResultados = document.getElementById('resultado');
-            var mensagemVencedores = document.getElementById('vencedores');
+        // Função para calcular e enviar a altura para o backend
+        function calcularAltura() {
+            const alturaUsuario = Number(campoAltura.value);
 
-            // Vetores para armazenar dados
-            var alturas = [];
-            var alturasHobbits = [];
+            if (alturaUsuario && alturaUsuario > 0) {
+                const alturaHobbit = (alturaUsuario / 1.20).toFixed(2); // Converte para a escala Hobbit
 
-            // Função para adicionar uma altura ao vetor
-            function adicionarAltura() {
-                var alturaUsuario = Number(campoAltura.value);
-                if (alturaUsuario && alturaUsuario > 0) {
-                    alturas.push(alturaUsuario); // Adiciona a altura ao vetor
-                    divMensagem.innerHTML = "Altura adicionada com sucesso!";
-                    listaAlturas.innerHTML += `<li>Altura ${alturas.length}: ${alturaUsuario} metros</li>`;
-                    campoAltura.value = ""; // Limpa o campo
-                } else {
-                    divMensagem.innerHTML = "Por favor, insira uma altura válida.";
-                }
-            }
-
-            // Função para calcular as alturas na escala Hobbit
-            function calcularAlturas() {
-                listaResultados.innerHTML = ""; // Limpa os resultados anteriores
-                alturasHobbits = []; // Limpa os dados convertidos antes de recalcular
-
-                for (var i = 0; i < alturas.length; i++) {
-                    var alturaHobbit = (alturas[i] / 1.20).toFixed(2); // Converte para Hobbit
-                    alturasHobbits.push(Number(alturaHobbit)); // Adiciona ao vetor convertido
-                    listaResultados.innerHTML += `<li>Altura ${i + 1}: ${alturas[i]} metros = ${alturaHobbit} Hobbits</li>`;
-                }
-
-                divMensagem.innerHTML = "Cálculo concluído com sucesso!";
-                exibirVencedores();
-            }
-
-            function adicionar() {
+                // Envia a altura para o backend
                 fetch("/usuarios/cadastrarAlturas", {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json",
                     },
                     body: JSON.stringify({
-                        fkusuario: Number(sessionStorage.ID_USUARIO),
-                        altura_usuario: alturas[0],
-                        altura_hobbit: alturasHobbits[0],
-
+                        fkusuario: Number(sessionStorage.ID_USUARIO), // ID do usuário logado
+                        altura_usuario: alturaUsuario, // Altura original
+                        altura_hobbit: alturaHobbit, // Altura convertida
                     }),
-                }).then(function (resposta) {
-                    console.log("resposta Pergunta: ", resposta);
-                    if (resposta.ok) {
-
-                    }
-                });
+                })
+                    .then((resposta) => {
+                        if (resposta.ok) {
+                            divMensagem.innerHTML = `Altura convertida com sucesso! Hobbit: ${alturaHobbit}`;
+                            btnDashboard.style.display = "block"; // Exibe o botão para ir à Dashboard
+                        } else {
+                            divMensagem.innerHTML = "Erro ao salvar a altura no servidor.";
+                        }
+                    })
+                    .catch((erro) => {
+                        console.error("Erro ao enviar dados:", erro);
+                        divMensagem.innerHTML = "Erro ao conectar com o servidor.";
+                    });
+            } else {
+                divMensagem.innerHTML = "Por favor, insira uma altura válida.";
             }
+        }
 
-            // Função para exibir o Hobbit mais alto e o usuário mais baixo
-            function exibirVencedores() {
-                if (alturas.length === 0) {
-                    mensagemVencedores.innerHTML = "Nenhum dado disponível para calcular os vencedores.";
-                    return;
-                }
-
-                var maiorAlturaHobbit = alturasHobbits[0];
-                var menorAlturaUsuario = alturas[0];
-                var indiceMaiorHobbit = 0;
-                var indiceMenorUsuario = 0;
-
-                for (var i = 1; i < alturas.length; i++) {
-                    if (alturasHobbits[i] > maiorAlturaHobbit) {
-                        maiorAlturaHobbit = alturasHobbits[i];
-                        indiceMaiorHobbit = i;
-                    }
-
-                    if (alturas[i] < menorAlturaUsuario) {
-                        menorAlturaUsuario = alturas[i];
-                        indiceMenorUsuario = i;
-                    }
-                }
-
-                mensagemVencedores.innerHTML = `
-                    <strong>Resultados:</strong><br>
-                    Hobbit mais alto: Altura ${indiceMaiorHobbit + 1} = ${maiorAlturaHobbit} Hobbits<br>
-                    Usuário mais baixo: Altura ${indiceMenorUsuario + 1} = ${menorAlturaUsuario} metros
-                `;
-            }
-        </script>
-    </body>
+        // Função para redirecionar à Dashboard
+        function irParaDashboard() {
+            window.location.href = "./dashboard/dashboard1.html";
+        }
+    </script>
+</body>
 
 </html>

@@ -1,6 +1,8 @@
 CREATE DATABASE projeto_individual;
 USE projeto_individual;
 
+
+-- tabela usuario
 CREATE TABLE usuario (
     id INT PRIMARY KEY AUTO_INCREMENT,
     nome VARCHAR(50) NOT NULL,
@@ -8,7 +10,7 @@ CREATE TABLE usuario (
     senha VARCHAR(50) NOT NULL,
     pontuacao INT DEFAULT 0  -- Adicionado para armazenar a pontuação do quiz
 );
-
+-- TABELAS QUIZ
 CREATE TABLE perguntas (
     id INT AUTO_INCREMENT PRIMARY KEY,
     texto VARCHAR(255) NOT NULL,
@@ -28,6 +30,18 @@ CREATE TABLE respostas_usuarios (
     FOREIGN KEY (usuario_id) REFERENCES usuario(id) ON DELETE CASCADE,
     FOREIGN KEY (pergunta_id) REFERENCES perguntas(id) ON DELETE CASCADE
 );
+
+-- TABELA ALTURAS
+CREATE TABLE alturas_usuarios (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+	fk_usuario INT,
+	FOREIGN KEY (fk_usuario) REFERENCES usuario(id),
+    altura DECIMAL(5, 2) NOT NULL,
+    altura_hobbits DECIMAL (5,2) NOT NULL
+);
+
+
+
 
 -- Verificando as tabelas
 SHOW TABLES;
@@ -54,3 +68,5 @@ SELECT id, texto, correta FROM perguntas;
 
 SELECT IF('a' = correta, 1, 0) AS correta FROM perguntas WHERE id = 1;
 SELECT * FROM respostas_usuarios;
+
+
