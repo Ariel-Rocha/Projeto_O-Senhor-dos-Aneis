@@ -1,46 +1,54 @@
+
+-- Primeiro, eu crio o banco de dados para o projeto e já seleciono ele para uso.
 CREATE DATABASE projeto_individual;
 USE projeto_individual;
 
-
+-- Agora, vou criar a tabela para armazenar os usuários.
 -- tabela usuario
+-- Primeiro, eu crio o banco de dados para o projeto e já seleciono ele para uso.
+CREATE DATABASE projeto_individual;
+USE projeto_individual;
+
+-- Agora, vou criar a tabela para armazenar os usuários.
 CREATE TABLE usuario (
-    id INT PRIMARY KEY AUTO_INCREMENT,
-    nome VARCHAR(50) NOT NULL,
-    email VARCHAR(50) UNIQUE NOT NULL,
-    senha VARCHAR(50) NOT NULL,
-    pontuacao INT DEFAULT 0  -- Adicionado para armazenar a pontuação do quiz
+    id INT PRIMARY KEY AUTO_INCREMENT, -- Cada usuário terá um ID único que será gerado automaticamente.
+    nome VARCHAR(50) NOT NULL, -- Aqui guardo o nome do usuário, e ele é obrigatório.
+    email VARCHAR(50) UNIQUE NOT NULL, -- O e-mail do usuário, que deve ser único e obrigatório.
+    senha VARCHAR(50) NOT NULL, -- A senha do usuário, também obrigatória.
+    pontuacao INT DEFAULT 0 -- Adicionei a pontuação do quiz para armazenar o desempenho do usuário. O valor padrão é 0.
 );
--- TABELAS QUIZ
+
+-- Agora, crio a tabela que armazena as perguntas do quiz.
 CREATE TABLE perguntas (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    texto VARCHAR(255) NOT NULL,
-    alternativa_a VARCHAR(255) NOT NULL,
-    alternativa_b VARCHAR(255) NOT NULL,
-    alternativa_c VARCHAR(255) NOT NULL,
-    alternativa_d VARCHAR(255) NOT NULL,
-    correta CHAR(1) NOT NULL
+    id INT AUTO_INCREMENT PRIMARY KEY, -- Cada pergunta terá um ID único gerado automaticamente.
+    texto VARCHAR(255) NOT NULL, -- Aqui fica o texto da pergunta.
+    alternativa_a VARCHAR(255) NOT NULL, -- Alternativa A, obrigatória.
+    alternativa_b VARCHAR(255) NOT NULL, -- Alternativa B, obrigatória.
+    alternativa_c VARCHAR(255) NOT NULL, -- Alternativa C, obrigatória.
+    alternativa_d VARCHAR(255) NOT NULL, -- Alternativa D, obrigatória.
+    correta CHAR(1) NOT NULL -- Essa coluna indica qual alternativa é a correta (A, B, C ou D).
 );
 
+-- Agora, crio uma tabela para guardar as respostas dos usuários.
 CREATE TABLE respostas_usuarios (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    usuario_id INT NOT NULL,
-    pergunta_id INT NOT NULL,
-    resposta CHAR(1) NOT NULL,
-    correta BOOLEAN NOT NULL,
-    FOREIGN KEY (usuario_id) REFERENCES usuario(id) ON DELETE CASCADE,
-    FOREIGN KEY (pergunta_id) REFERENCES perguntas(id) ON DELETE CASCADE
+    id INT AUTO_INCREMENT PRIMARY KEY, -- Cada resposta armazenada terá um ID único.
+    usuario_id INT NOT NULL, -- O ID do usuário que respondeu a pergunta.
+    pergunta_id INT NOT NULL, -- O ID da pergunta respondida.
+    resposta CHAR(1) NOT NULL, -- A resposta do usuário (A, B, C ou D).
+    correta BOOLEAN NOT NULL, -- Indica se a resposta foi correta (1) ou incorreta (0).
+    FOREIGN KEY (usuario_id) REFERENCES usuario(id) ON DELETE CASCADE, -- Conecto a resposta ao usuário na tabela `usuario`.
+    FOREIGN KEY (pergunta_id) REFERENCES perguntas(id) ON DELETE CASCADE -- Conecto a resposta à pergunta na tabela `perguntas`.
+    -- Com ON DELETE CASCADE, se um usuário ou pergunta for deletado, as respostas relacionadas também serão apagadas.
 );
 
--- TABELA ALTURAS
+-- Agora, vou criar uma tabela para armazenar as alturas dos usuários.
 CREATE TABLE alturas_usuarios (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-	fk_usuario INT,
-	FOREIGN KEY (fk_usuario) REFERENCES usuario(id),
-    altura DECIMAL(5, 2) NOT NULL,
-    altura_hobbits DECIMAL (5,2) NOT NULL
+    id INT AUTO_INCREMENT PRIMARY KEY, -- Cada registro de altura terá um ID único gerado automaticamente.
+    fk_usuario INT, -- O ID do usuário ao qual essa altura pertence.
+    FOREIGN KEY (fk_usuario) REFERENCES usuario(id), -- Conecto a altura ao usuário na tabela `usuario`.
+    altura DECIMAL(5, 2) NOT NULL, -- Aqui guardo a altura do usuário em metros (com até 5 dígitos no total e 2 casas decimais).
+    altura_hobbits DECIMAL(5, 2) NOT NULL -- Aqui guardo a altura convertida para a escala Hobbit (também com 2 casas decimais).
 );
-
-
 
 
 -- Verificando as tabelas

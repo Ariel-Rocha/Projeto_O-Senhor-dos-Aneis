@@ -118,6 +118,7 @@
 
     <!-- Navegação -->
     <div class="itens">
+         <!-- Nesta seção, adicionei os links para as páginas principais do site -->
         <a href="./home.html"><span>Home</span></a>
         <a href="./quiz.html"><span>Quiz</span></a>
         <a href="./ranking.html"><span>Ranking</span></a>
@@ -125,10 +126,13 @@
 
     <!-- Conteúdo principal -->
     <div class="calculadorafixa">
+        <!-- Título da página -->
         <h1>Quiz</h1>
         <span>Responda às perguntas abaixo sobre O Senhor dos Anéis:</span>
+
+         
         <div class="inputsimc">
-            <!-- Perguntas -->
+           <!-- Pergunta 1 -->
             <span>1. Quem criou o Um Anel?</span>
             <select id="q1">
                 <option value="#">Selecione</option>
@@ -138,6 +142,7 @@
                 <option value="d">Elrond</option>
             </select>
 
+                <!-- Pergunta 2 -->
             <span>2. Quantos membros compõem a Sociedade do Anel?</span>
             <select id="q2">
                 <option value="#">Selecione</option>
@@ -147,6 +152,7 @@
                 <option value="d">10</option>
             </select>
 
+            <!-- Pergunta 3 -->
             <span>3. Quem é o portador do Um Anel em grande parte da história?</span>
             <select id="q3">
                 <option value="#">Selecione</option>
@@ -155,7 +161,7 @@
                 <option value="c">Legolas</option>
                 <option value="d">Sam</option>
             </select>
-
+                <!-- Pergunta 4 -->
             <span>4. Quem é o verdadeiro herdeiro do trono de Gondor?</span>
             <select id="q4">
                 <option value="#">Selecione</option>
@@ -164,7 +170,7 @@
                 <option value="c">Aragorn</option>
                 <option value="d">Denethor</option>
             </select>
-
+                    <!-- Pergunta 5 --> 
             <span>5. Qual o nome do mago branco?</span>
             <select id="q5">
                 <option value="#">Selecione</option>
@@ -186,33 +192,29 @@
     </div>
 
     <script>
-        // Função para enviar as respostas do quiz
+        // Criei a função para enviar as respostas do quiz
         function enviarRespostas() {
-            // Array para armazenar as respostas
+            // Primeiro, eu crio um array vazio para armazenar as respostas do usuário
             var respostas = [
             ];
 
-            // Coletar as respostas dos selects
+            // Pego os valores selecionados nos campos de cada pergunta
             var q1 = document.getElementById("q1").value;
             var q2 = document.getElementById("q2").value;
             var q3 = document.getElementById("q3").value;
             var q4 = document.getElementById("q4").value;
             var q5 = document.getElementById("q5").value;
 
-            // Verificar se todas as perguntas foram respondidas
+            // Verifico se o usuário respondeu todas as perguntas
             if (q1 === "#" || q2 === "#" || q3 === "#" || q4 === "#" || q5 === "#") {
                 alert("Por favor, responda todas as perguntas!");
-                return;
+                return; // Se faltar alguma resposta, mostro um alerta e paro a função
 
             }
 
 
-            // Adicionar as respostas ao array
-            //   respostas.push({ perguntaId: 1, resposta: q1 });
-            //  respostas.push({ perguntaId: 2, resposta: q2 });
-            //  respostas.push({ perguntaId: 3, resposta: q3 });
-            //   respostas.push({ perguntaId: 4, resposta: q4 });
-            //   respostas.push({ perguntaId: 5, resposta: q5 });
+            // Verifico cada resposta para marcar se está correta ou errada
+            // Depois, adiciono ao array 'respostas' com o ID da pergunta, a resposta e se está correta
             if (q1 === "a") {
                 respostas.push({ perguntaId: 1, resposta: q1, correta: 1 })
             } else {
@@ -238,29 +240,33 @@
                 respostas.push({ perguntaId: 5, resposta: q5, correta: 0 })
             };
 
-            // ID do usuário (exemplo simples)
+            //(31-01)
+            // Pego o ID do usuário armazenado na sessão
             var usuarioId = sessionStorage.getItem("ID_USUARIO");
 
-            // Logar os dados que serão enviados
+            // Exibo os dados que serão enviados no console para garantir que estão corretos
             console.log("Dados enviados pelo fetch:");
             console.log({ usuarioId, respostas });
-            // Enviar as respostas para o backend
+
+            // Envio as respostas para o backend
             fetch("http://localhost:3333/quiz/salvarRespostas", {
-                method: "POST",
+                method: "POST", // Método de envio
                 headers: {
-                    "Content-Type": "application/json",
+                    "Content-Type": "application/json", // Especifico o tipo de dado enviado
                 },
-                body: JSON.stringify({ usuarioId: usuarioId, respostas: respostas }),
+                // Transformo os dados em JSON
+                body: JSON.stringify({ usuarioId: usuarioId, respostas: respostas }),   
             })
                 .then(function (response) {
                     if (response.ok) {
                         alert("Respostas enviadas com sucesso!");
-                        window.location.href = "./dashboard/dashboard1.html"; // Redireciona para a página de resultados
+                        window.location.href = "./dashboard/dashboard1.html"; // Redirecionei para a pagina dashboard1 - exibindo os resultados
                     } else {
                         alert("Erro ao enviar as respostas.");
                     }
                 })
                 .catch(function (erro) {
+                     // Caso ocorra algum erro na comunicação, mostro no console e aviso o usuário
                     console.error("Erro:", erro);
                     alert("Não foi possível enviar as respostas.");
                 });
