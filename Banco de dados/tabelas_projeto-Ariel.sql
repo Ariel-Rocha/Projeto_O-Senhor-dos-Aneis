@@ -21,13 +21,14 @@ CREATE TABLE usuario (
 -- Agora, crio a tabela que armazena as perguntas do quiz.
 CREATE TABLE perguntas (
     id INT AUTO_INCREMENT PRIMARY KEY, -- Cada pergunta terá um ID único gerado automaticamente.
-    texto VARCHAR(255) NOT NULL, -- Aqui fica o texto da pergunta.
-    alternativa_a VARCHAR(255) NOT NULL, -- Alternativa A, obrigatória.
-    alternativa_b VARCHAR(255) NOT NULL, -- Alternativa B, obrigatória.
-    alternativa_c VARCHAR(255) NOT NULL, -- Alternativa C, obrigatória.
-    alternativa_d VARCHAR(255) NOT NULL, -- Alternativa D, obrigatória.
+    texto VARCHAR(200) NOT NULL,, -- Aqui fica o texto da pergunta.
+    alternativa_a VARCHAR(100) NOT NULL,, -- Alternativa A, obrigatória.
+    alternativa_b VARCHAR(100) NOT NULL, -- Alternativa B, obrigatória.
+    alternativa_c VARCHAR(100) NOT NULL, -- Alternativa C, obrigatória.
+    alternativa_d VARCHAR(100) NOT NULL, -- Alternativa D, obrigatória.
     correta CHAR(1) NOT NULL -- Essa coluna indica qual alternativa é a correta (A, B, C ou D).
 );
+
 
 -- Agora, crio uma tabela para guardar as respostas dos usuários.
 CREATE TABLE respostas_usuarios (
@@ -63,18 +64,74 @@ VALUES
 ('Quem é o verdadeiro herdeiro do trono de Gondor?', 'Boromir', 'Faramir', 'Aragorn', 'Denethor', 'c'),
 ('Qual o nome do mago branco?', 'Saruman', 'Gandalf', 'Radagast', 'Tom Bombadil', 'b');
 
-select * from perguntas;
+
+
 SELECT * FROM usuario;
 
-INSERT INTO usuario (nome, email, senha) VALUES ('Teste', 'teste@teste.com', '123456');
+SELECT * FROM perguntas;
 
 SELECT * FROM respostas_usuarios;
 
-SELECT IF('d' = correta, 1, 0) AS correta FROM perguntas WHERE id = 2;
+SELECT * FROM alturas_usuarios;
 
-SELECT id, texto, correta FROM perguntas;
 
-SELECT IF('a' = correta, 1, 0) AS correta FROM perguntas WHERE id = 1;
-SELECT * FROM respostas_usuarios;
+-- Usuários que tiveram uma pontuação maior que 50% no quiz
+SELECT u.nome, 
+       SUM(ru.correta) AS acertos, 
+       COUNT(*) AS total_perguntas
+FROM usuario u
+JOIN respostas_usuarios ru ON u.id = ru.usuario_id
+GROUP BY u.id, u.nome
+HAVING (SUM(ru.correta) / COUNT(*)) * 100 > 50;
+
+-- Os três melhores usuários no quiz (ranking)
+SELECT u.nome, 
+       SUM(ru.correta) AS acertos
+FROM usuario u
+JOIN respostas_usuarios ru ON u.id = ru.usuario_id
+GROUP BY u.id, u.nome
+ORDER BY acertos DESC
+LIMIT 3;
+
+
+-- Alturas dos usuarios (Maior para menor) Hobbit.
+SELECT u.nome, a.altura_hobbits 
+FROM alturas_usuarios a
+JOIN usuario u ON a.fk_usuario = u.id
+ORDER BY a.altura_hobbits DESC;
+
+-- Alturas usuarios (Maior para menor)
+SELECT nome, altura 
+FROM alturas_usuarios 
+ORDER BY altura DESC;
+
+-- query quizModel, obterResultado:
+SELECT 
+	COUNT(*) AS totalPerguntas, 
+	SUM(correta) AS totalAcertos, 
+	(SUM(correta) / COUNT(*)) * 100 AS percentual
+FROM respostas_usuarios
+WHERE usuario_id = ${usuarioId};
+        
+ -- query quizModel, obterResultados:
+ SELECT 
+    u.nome,  
+    SUM(ru.correta) AS total_acertos,
+    COUNT(*) AS total_perguntas,
+    (SUM(ru.correta) / COUNT(*)) * 100 AS percentual_acertos
+FROM 
+    usuario u  
+JOIN 
+    respostas_usuarios ru  
+ON 
+    u.id = ru.usuario_id  
+GROUP BY 
+    u.id, u.nome  
+ORDER BY 
+    percentual_acertos DESC;
+    
+    
+
+
 
 
