@@ -6,18 +6,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Quiz - O Senhor dos Anéis</title>
     <style>
-        /* Mesmo estilo anterior */
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f5f5f5;
+        @font-face {
+            font-family: 'Ringbearer';
+            src: url('./assets/Fonte-Ringbearer/RINGM___.TTF') format('truetype');
         }
+
+        body {
+            font-family: 'Ringbearer';
+            background-image: url('./assets/imagens/fundo_home.png');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            background-repeat: no-repeat;
+        }
+
 
         .logonavbar {
             display: flex;
             align-items: center;
-            background-color: #333;
+            background-color: #013d09;
             color: #fff;
             padding: 10px 20px;
         }
@@ -31,7 +38,7 @@
             display: flex;
             justify-content: center;
             padding: 10px;
-            background-color: #444;
+            background-color: #3c834b;
         }
 
         .itens a {
@@ -48,14 +55,14 @@
             margin: 30px auto;
             padding: 20px;
             max-width: 800px;
-            background-color: #fff;
+            background-color: #DAA520;
             border-radius: 8px;
             box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
         }
 
         h1 {
             text-align: center;
-            color: #333;
+            color: #062916;
         }
 
         .inputsimc {
@@ -82,7 +89,7 @@
             max-width: 200px;
             margin: 20px auto;
             padding: 10px;
-            background-color: #4CAF50;
+            background-color: #000;
             color: white;
             text-align: center;
             border: none;
@@ -98,7 +105,7 @@
             text-align: center;
             margin-top: 30px;
             padding: 10px 0;
-            background-color: #333;
+            background-color: #061d0d;
             color: white;
         }
 
@@ -118,7 +125,7 @@
 
     <!-- Navegação -->
     <div class="itens">
-         <!-- Nesta seção, adicionei os links para as páginas principais do site -->
+        <!-- Nesta seção, adicionei os links para as páginas principais do site -->
         <a href="./home.html"><span>Home</span></a>
         <a href="./quiz.html"><span>Quiz</span></a>
         <a href="./ranking.html"><span>Ranking</span></a>
@@ -127,12 +134,12 @@
     <!-- Conteúdo principal -->
     <div class="calculadorafixa">
         <!-- Título da página -->
-        <h1>Quiz</h1>
+        <h1>Quiz - O Senhor dos Anéis</h1>
         <span>Responda às perguntas abaixo sobre O Senhor dos Anéis:</span>
 
-         
+
         <div class="inputsimc">
-           <!-- Pergunta 1 -->
+            <!-- Pergunta 1 -->
             <span>1. Quem criou o Um Anel?</span>
             <select id="q1">
                 <option value="#">Selecione</option>
@@ -142,7 +149,7 @@
                 <option value="d">Elrond</option>
             </select>
 
-                <!-- Pergunta 2 -->
+            <!-- Pergunta 2 -->
             <span>2. Quantos membros compõem a Sociedade do Anel?</span>
             <select id="q2">
                 <option value="#">Selecione</option>
@@ -161,7 +168,7 @@
                 <option value="c">Legolas</option>
                 <option value="d">Sam</option>
             </select>
-                <!-- Pergunta 4 -->
+            <!-- Pergunta 4 -->
             <span>4. Quem é o verdadeiro herdeiro do trono de Gondor?</span>
             <select id="q4">
                 <option value="#">Selecione</option>
@@ -170,7 +177,7 @@
                 <option value="c">Aragorn</option>
                 <option value="d">Denethor</option>
             </select>
-                    <!-- Pergunta 5 --> 
+            <!-- Pergunta 5 -->
             <span>5. Qual o nome do mago branco?</span>
             <select id="q5">
                 <option value="#">Selecione</option>
@@ -255,7 +262,7 @@
                     "Content-Type": "application/json", // Especifico o tipo de dado enviado
                 },
                 // Transformo os dados em JSON
-                body: JSON.stringify({ usuarioId: usuarioId, respostas: respostas }),   
+                body: JSON.stringify({ usuarioId: usuarioId, respostas: respostas }),
             })
                 .then(function (response) {
                     if (response.ok) {
@@ -266,7 +273,7 @@
                     }
                 })
                 .catch(function (erro) {
-                     // Caso ocorra algum erro na comunicação, mostro no console e aviso o usuário
+                    // Caso ocorra algum erro na comunicação, mostro no console e aviso o usuário
                     console.error("Erro:", erro);
                     alert("Não foi possível enviar as respostas.");
                 });
