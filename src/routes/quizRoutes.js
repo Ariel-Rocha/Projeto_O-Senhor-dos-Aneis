@@ -1,14 +1,14 @@
-const express = require('express');
-const router = express.Router();
-const quizController = require('../controllers/quizController');
+var express = require('express');
+var router = express.Router();
+var quizController = require('../controllers/quizController');
 
-// Rota para salvar respostas
+// adicionei a rota para salvar respostas
 router.post('/salvarRespostas', quizController.salvarRespostas);
 
-// Rota para obter resultados do quiz
+// adicionei a rota para obter resultados do quiz
 router.get('/resultadoQuiz/:usuarioId', quizController.resultadoQuiz);
 
-
+// adicionei a rota resultados
 router.get('/resultados', quizController.obterResultados);
 
 

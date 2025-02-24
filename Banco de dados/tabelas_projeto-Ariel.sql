@@ -130,7 +130,24 @@ GROUP BY
 ORDER BY 
     percentual_acertos DESC;
     
-    
+
+-- dados tabela respostas
+SELECT * FROM respostas_usuarios LIMIT 5;
+--  SELECT para mostrar o ranking do quiz: 
+SELECT u.nome,   
+    SUM(ru.correta) AS total_acertos, 
+    COUNT(*) AS total_perguntas, 
+    (SUM(ru.correta) / COUNT(*)) * 100 AS percentual_acertos 
+FROM usuario u   
+JOIN respostas_usuarios ru ON u.id = ru.usuario_id   
+GROUP BY u.id, u.nome   
+ORDER BY percentual_acertos DESC;
+
+-- SELECT para o ranking de alturas:
+SELECT u.nome, a.altura_hobbits 
+FROM usuario u 
+JOIN alturas_usuarios a ON u.id = a.fk_usuario 
+ORDER BY a.altura_hobbits DESC; 
 
 
 
